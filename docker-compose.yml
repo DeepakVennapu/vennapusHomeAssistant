@@ -1,0 +1,38 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+    environment:
+      - TZ=America/Denver
+    ports:
+      - "8123:8123"
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:latest
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    ports:
+      - "1883:1883"
+    restart: unless-stopped
+
+  ring-mqtt:
+    container_name: ring-mqtt
+    image: tsightler/ring-mqtt:latest
+    volumes:
+      - ./ring-mqtt:/data
+    environment:
+      - MQTTHOST=mosquitto
+      - MQTTPORT=1883
+      - MQTTUSER=mqttuser
+      - MQTTPASSWORD=${MQTT_PASSWORD}
+    restart: unless-stopped
+    depends_on:
+      - mosquitto

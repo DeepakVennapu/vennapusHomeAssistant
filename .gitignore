@@ -1,0 +1,13 @@
+# Secrets — never commit these
+.env
+mosquitto/config/passwd
+ring-mqtt/
+config/secrets.yaml
+config/.storage/
+config/deps/
+config/home-assistant.log
+config/home-assistant_v2.db
+config/home-assistant_v2.db-shm
+config/home-assistant_v2.db-wal
+config/__pycache__/
+config/tts/
