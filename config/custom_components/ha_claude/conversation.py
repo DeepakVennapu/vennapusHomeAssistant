@@ -9,7 +9,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers import intent
 
 _LOGGER = logging.getLogger(__name__)
-BRIDGE_URL = "http://localhost:8124/converse"
+BRIDGE_URL = "http://ha_bridge:8124/converse"
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
