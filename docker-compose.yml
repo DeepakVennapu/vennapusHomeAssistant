@@ -36,3 +36,23 @@ services:
     restart: unless-stopped
     depends_on:
       - mosquitto
+
+  ha_bridge:
+    image: python:3.11-slim
+    container_name: ha_bridge
+    network_mode: host
+    working_dir: /app
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: >
+      sh -c "pip install -r requirements.txt -q && python ha_bridge.py"
+    restart: unless-stopped
+    depends_on:
+      - homeassistant
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8124/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

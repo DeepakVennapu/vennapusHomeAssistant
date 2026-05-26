@@ -1,0 +1,10 @@
+{
+  "domain": "ha_claude",
+  "name": "Claude AI Assistant",
+  "version": "1.0.0",
+  "documentation": "",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": [],
+  "iot_class": "local_polling"
+}
