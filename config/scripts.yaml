@@ -1,95 +1,94 @@
-script:
-  goodnight:
-    alias: Goodnight
-    sequence:
-      - service: lock.lock
-        target:
-          entity_id: lock.front_door
-      - service: cover.close_cover
-        target:
-          entity_id: cover.double_car_garage_door
-      - service: cover.close_cover
-        target:
-          entity_id: cover.single_car_garage_door
-      - service: alarm_control_panel.alarm_arm_home
-        target:
-          entity_id: alarm_control_panel.ring_alarm
-    mode: single
+goodnight:
+  alias: Goodnight
+  sequence:
+    - action: lock.lock
+      target:
+        entity_id: lock.front_door
+    - action: cover.close_cover
+      target:
+        entity_id: cover.double_car_garage_door
+    - action: cover.close_cover
+      target:
+        entity_id: cover.single_car_garage_door
+    - action: alarm_control_panel.alarm_arm_home
+      target:
+        entity_id: alarm_control_panel.ring_alarm
+  mode: single
 
-  good_morning:
-    alias: Good Morning
-    sequence:
-      - service: alarm_control_panel.alarm_disarm
-        target:
-          entity_id: alarm_control_panel.ring_alarm
-      - service: lock.unlock
-        target:
-          entity_id: lock.front_door
-    mode: single
+good_morning:
+  alias: Good Morning
+  sequence:
+    - action: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.ring_alarm
+    - action: lock.unlock
+      target:
+        entity_id: lock.front_door
+  mode: single
 
-  leave_home:
-    alias: Leave Home
-    sequence:
-      - service: cover.close_cover
-        target:
-          entity_id: cover.double_car_garage_door
-      - service: cover.close_cover
-        target:
-          entity_id: cover.single_car_garage_door
-      - service: lock.lock
-        target:
-          entity_id: lock.front_door
-      - service: alarm_control_panel.alarm_arm_away
-        target:
-          entity_id: alarm_control_panel.ring_alarm
-    mode: single
+leave_home:
+  alias: Leave Home
+  sequence:
+    - action: cover.close_cover
+      target:
+        entity_id: cover.double_car_garage_door
+    - action: cover.close_cover
+      target:
+        entity_id: cover.single_car_garage_door
+    - action: lock.lock
+      target:
+        entity_id: lock.front_door
+    - action: alarm_control_panel.alarm_arm_away
+      target:
+        entity_id: alarm_control_panel.ring_alarm
+  mode: single
 
-  leave_home_resident_staying:
-    alias: Leave Home (Resident Staying)
-    sequence:
-      - service: cover.close_cover
-        target:
-          entity_id: cover.double_car_garage_door
-      - service: cover.close_cover
-        target:
-          entity_id: cover.single_car_garage_door
-      - service: lock.lock
-        target:
-          entity_id: lock.front_door
-      - service: alarm_control_panel.alarm_arm_home
-        target:
-          entity_id: alarm_control_panel.ring_alarm
-    mode: single
+leave_home_resident_staying:
+  alias: Leave Home (Resident Staying)
+  sequence:
+    - action: cover.close_cover
+      target:
+        entity_id: cover.double_car_garage_door
+    - action: cover.close_cover
+      target:
+        entity_id: cover.single_car_garage_door
+    - action: lock.lock
+      target:
+        entity_id: lock.front_door
+    - action: alarm_control_panel.alarm_arm_home
+      target:
+        entity_id: alarm_control_panel.ring_alarm
+  mode: single
 
-  arrive_home:
-    alias: Arrive Home
-    sequence:
-      - service: alarm_control_panel.alarm_disarm
-        target:
-          entity_id: alarm_control_panel.ring_alarm
-      - service: cover.open_cover
-        target:
-          entity_id: cover.double_car_garage_door
-    mode: single
+arrive_home:
+  alias: Arrive Home
+  sequence:
+    - action: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.ring_alarm
+    - action: cover.open_cover
+      target:
+        entity_id: cover.double_car_garage_door
+  mode: single
 
-  close_all_garages:
-    alias: Close All Garages
-    sequence:
-      - service: cover.close_cover
-        target:
-          entity_id: cover.double_car_garage_door
-      - service: cover.close_cover
-        target:
-          entity_id: cover.single_car_garage_door
-    mode: single
+close_all_garages:
+  alias: Close All Garages
+  sequence:
+    - action: cover.close_cover
+      target:
+        entity_id: cover.double_car_garage_door
+    - action: cover.close_cover
+      target:
+        entity_id: cover.single_car_garage_door
+  mode: single
 
-  lock_up:
-    alias: Lock Up
-    sequence:
-      - service: lock.lock
-        target:
-          entity_id: lock.front_door
-      - service: alarm_control_panel.alarm_arm_home
-        target:
-          entity_id: alarm_control_panel.ring_alarm
-    mode: single
+lock_up:
+  alias: Lock Up
+  sequence:
+    - action: lock.lock
+      target:
+        entity_id: lock.front_door
+    - action: alarm_control_panel.alarm_arm_home
+      target:
+        entity_id: alarm_control_panel.ring_alarm
+  mode: single
