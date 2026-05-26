@@ -1,0 +1,15 @@
+{
+  "people": [
+    {
+      "names": ["Deepak", "I", "me"],
+      "ha_entity": "person.deepak_aryan",
+      "role": "owner"
+    },
+    {
+      "names": ["Bunny", "my partner", "she"],
+      "ha_entity": "person.bunny",
+      "role": "resident",
+      "note": "No HA companion app yet — presence inferred from explicit statements only"
+    }
+  ]
+}
