@@ -1,0 +1,83 @@
+- id: leave_for_work_close_garage
+  alias: "Leave for Work — Close Garages"
+  description: "When Deepak leaves home zone, close both garage doors"
+  trigger:
+    - platform: state
+      entity_id: person.deepak_aryan
+      from: "home"
+      to: "not_home"
+  condition: []
+  action:
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.double
+          - cover.single
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Garage Closed"
+        message: "Both garage doors closed as you left home."
+  mode: single
+
+- id: arriving_home_open_garage
+  alias: "Arriving Home — Open Garage"
+  description: "When Deepak enters the near-home zone, open the double garage"
+  trigger:
+    - platform: zone
+      entity_id: person.deepak_aryan
+      zone: zone.near_home
+      event: enter
+  condition: []
+  action:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.double
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Welcome Home"
+        message: "Double garage opening — almost there!"
+  mode: single
+
+- id: garage_open_too_long
+  alias: "Garage Open > 10 Minutes"
+  description: "Notify if either garage door stays open for more than 10 minutes"
+  trigger:
+    - platform: state
+      entity_id:
+        - cover.double
+        - cover.single
+      to: "open"
+      for:
+        minutes: 10
+  condition: []
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Garage Left Open"
+        message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
+  mode: parallel
+  max: 2
+
+- id: door_window_open_too_long
+  alias: "Door/Window Open > 10 Minutes"
+  description: "Notify if any contact sensor stays open for more than 10 minutes"
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.front_door
+        - binary_sensor.backyard_door
+        - binary_sensor.back_window
+        - binary_sensor.basement_door
+        - binary_sensor.living_room
+        - binary_sensor.garage_door
+      to: "on"
+      for:
+        minutes: 10
+  condition: []
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Door/Window Left Open"
+        message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
+  mode: parallel
+  max: 6

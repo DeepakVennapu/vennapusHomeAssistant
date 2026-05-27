@@ -24,6 +24,7 @@ lovelace:
       show_in_sidebar: true
 
 automation: !include automations.yaml
+zone: !include zones.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
