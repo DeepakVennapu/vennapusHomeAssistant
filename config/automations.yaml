@@ -81,3 +81,204 @@
         message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
   mode: parallel
   max: 6
+
+# ─── SECURITY ──────────────────────────────────────────────────────────────
+
+- id: alarm_triggered_notify
+  alias: "Alarm Triggered — Notify"
+  description: "Immediately notify when the Ring alarm is triggered"
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.deevana2_alarm
+      to: "triggered"
+  condition: []
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "ALARM TRIGGERED"
+        message: "Ring alarm is going off at home!"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+  mode: single
+
+- id: flood_freeze_alert
+  alias: "Flood/Freeze Sensor Alert"
+  description: "Urgent notify when any flood or freeze sensor trips"
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.basement_flood
+        - binary_sensor.basement_freeze
+        - binary_sensor.kitchen_flood
+        - binary_sensor.kitchen_freeze
+      to: "on"
+  condition: []
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "⚠️ {{ trigger.to_state.attributes.friendly_name }} Alert"
+        message: "{{ trigger.to_state.attributes.friendly_name }} detected at home — check immediately!"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+  mode: parallel
+  max: 4
+
+- id: night_motion_alert
+  alias: "Night Motion Alert"
+  description: "Notify on motion at night (10pm–6am) when alarm is armed"
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.front_door_motion
+        - binary_sensor.garage_motion
+        - binary_sensor.garden_motion
+        - binary_sensor.entryway_keypad_motion
+      to: "on"
+  condition:
+    - condition: time
+      after: "22:00:00"
+      before: "06:00:00"
+    - condition: state
+      entity_id: alarm_control_panel.deevana2_alarm
+      state: "armed_home"
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Motion Detected"
+        message: "{{ trigger.to_state.attributes.friendly_name }} at {{ now().strftime('%I:%M %p') }}"
+  mode: parallel
+  max: 4
+
+- id: front_door_unlocked_too_long
+  alias: "Front Door Unlocked > 10 Minutes"
+  description: "Notify if front door lock stays unlocked for more than 10 minutes"
+  trigger:
+    - platform: state
+      entity_id: lock.main_door
+      to: "unlocked"
+      for:
+        minutes: 10
+  condition: []
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Front Door Still Unlocked"
+        message: "The front door has been unlocked for over 10 minutes."
+  mode: single
+
+# ─── PRESENCE ──────────────────────────────────────────────────────────────
+
+- id: last_person_leaves_arm_away
+  alias: "Last Person Leaves — Arm Away"
+  description: "When Deepak leaves and nobody is home, lock up and arm away"
+  trigger:
+    - platform: state
+      entity_id: person.deepak_aryan
+      from: "home"
+      to: "not_home"
+  condition: []
+  action:
+    - action: lock.lock
+      target:
+        entity_id: lock.main_door
+    - action: alarm_control_panel.alarm_arm_away
+      target:
+        entity_id: alarm_control_panel.deevana2_alarm
+    - action: notify.mobile_app_deepak
+      data:
+        title: "House Secured"
+        message: "Front door locked and alarm armed away."
+  mode: single
+
+- id: arriving_home_disarm_alarm
+  alias: "Arriving Home — Disarm Alarm"
+  description: "Disarm alarm when Deepak enters the near-home zone"
+  trigger:
+    - platform: zone
+      entity_id: person.deepak_aryan
+      zone: zone.near_home
+      event: enter
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.deevana2_alarm
+      state: "armed_away"
+  action:
+    - action: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.deevana2_alarm
+  mode: single
+
+# ─── TIME-BASED ────────────────────────────────────────────────────────────
+
+- id: midnight_open_check
+  alias: "Midnight — Open Door/Garage Check"
+  description: "At midnight, notify if any garage or door is still open"
+  trigger:
+    - platform: time
+      at: "00:00:00"
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: cover.double
+          state: "open"
+        - condition: state
+          entity_id: cover.single
+          state: "open"
+        - condition: state
+          entity_id: binary_sensor.front_door
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.backyard_door
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.back_window
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.basement_door
+          state: "on"
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Midnight Check — Something's Open"
+        message: >
+          Still open at midnight:
+          {%- if is_state('cover.double', 'open') %} Double garage,{%- endif %}
+          {%- if is_state('cover.single', 'open') %} Single garage,{%- endif %}
+          {%- if is_state('binary_sensor.front_door', 'on') %} Front door,{%- endif %}
+          {%- if is_state('binary_sensor.backyard_door', 'on') %} Backyard door,{%- endif %}
+          {%- if is_state('binary_sensor.back_window', 'on') %} Back window,{%- endif %}
+          {%- if is_state('binary_sensor.basement_door', 'on') %} Basement door.{%- endif %}
+  mode: single
+
+- id: rain_delay_auto
+  alias: "Auto Rain Delay"
+  description: "Enable sprinkler rain delay when rain is forecast today"
+  trigger:
+    - platform: state
+      entity_id: weather.home
+      attribute: forecast
+  condition:
+    - condition: template
+      value_template: >
+        {{ state_attr('weather.home', 'forecast')[0].precipitation_probability | int > 50 }}
+    - condition: state
+      entity_id: switch.sprinkler_system_rain_delay
+      state: "off"
+  action:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.sprinkler_system_rain_delay
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Rain Delay Enabled"
+        message: "Sprinkler rain delay turned on — rain forecast today."
+  mode: single
