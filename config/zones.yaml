@@ -1,5 +1,5 @@
 - name: Near Home
   latitude: 40.5273
   longitude: -112.0379
-  radius: 800
+  radius: 250
   icon: mdi:home-import-outline

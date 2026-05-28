@@ -1,0 +1,281 @@
+title: Deevana
+views:
+
+  # ─── HOME ──────────────────────────────────────────────────────────────────
+  - title: Home
+    path: home
+    icon: mdi:home
+    cards:
+
+      - type: alarm-panel
+        entity: alarm_control_panel.deevana2_alarm
+        name: Alarm
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: lock.main_door
+            name: Lock
+            icon: mdi:lock
+            tap_action:
+              action: toggle
+          - type: button
+            entity: cover.double
+            name: 2-Car
+            icon: mdi:garage
+            tap_action:
+              action: toggle
+          - type: button
+            entity: cover.single
+            name: Gym
+            icon: mdi:garage-variant
+            tap_action:
+              action: toggle
+
+      - type: entities
+        title: Who's Home
+        entities:
+          - entity: person.deepak_aryan
+            name: Deepak
+          - entity: person.bunny
+            name: Bunny
+
+      - type: glance
+        title: Doors & Windows
+        show_state: true
+        columns: 3
+        entities:
+          - entity: binary_sensor.front_door
+            name: Front Door
+          - entity: binary_sensor.backyard_door
+            name: Backyard
+          - entity: binary_sensor.back_window
+            name: Back Window
+          - entity: binary_sensor.basement_door
+            name: Basement
+          - entity: binary_sensor.living_room
+            name: Living Room
+          - entity: binary_sensor.garage_door
+            name: Garage
+
+  # ─── SECURITY ──────────────────────────────────────────────────────────────
+  - title: Security
+    path: security
+    icon: mdi:shield-home
+    cards:
+
+      - type: alarm-panel
+        entity: alarm_control_panel.deevana2_alarm
+        name: Alarm
+
+      - type: entities
+        title: Front Door Lock
+        entities:
+          - entity: lock.main_door
+            name: Lock
+          - entity: sensor.main_door_last_lock_event
+            name: Last Event
+          - entity: sensor.main_door_battery
+            name: Battery
+          - entity: switch.main_door_auto_lock
+            name: Auto Lock
+          - entity: switch.main_door_audio
+            name: Audio
+          - entity: switch.main_door_led
+            name: LED
+
+      - type: glance
+        title: Contact Sensors
+        show_state: true
+        columns: 3
+        entities:
+          - entity: binary_sensor.front_door
+            name: Front Door
+          - entity: binary_sensor.backyard_door
+            name: Backyard
+          - entity: binary_sensor.back_window
+            name: Back Window
+          - entity: binary_sensor.basement_door
+            name: Basement
+          - entity: binary_sensor.living_room
+            name: Living Room
+          - entity: binary_sensor.garage_door
+            name: Garage
+
+      - type: glance
+        title: Flood & Freeze
+        show_state: true
+        columns: 2
+        entities:
+          - entity: binary_sensor.basement_flood
+            name: Bsmt Flood
+          - entity: binary_sensor.basement_freeze
+            name: Bsmt Freeze
+          - entity: binary_sensor.kitchen_flood
+            name: Kit Flood
+          - entity: binary_sensor.kitchen_freeze
+            name: Kit Freeze
+
+      - type: glance
+        title: Motion
+        show_state: true
+        columns: 2
+        entities:
+          - entity: binary_sensor.front_door_motion
+            name: Front Door
+          - entity: binary_sensor.garage_motion
+            name: Garage
+          - entity: binary_sensor.garden_motion
+            name: Garden
+          - entity: binary_sensor.entryway_keypad_motion
+            name: Entryway
+
+      - type: picture-glance
+        title: Front Door
+        entity: binary_sensor.front_door_motion
+        camera_image: camera.front_door_snapshot
+        entities:
+          - entity: binary_sensor.front_door_motion
+            name: Motion
+          - entity: binary_sensor.front_door
+            name: Door
+
+      - type: picture-glance
+        title: Garage
+        entity: binary_sensor.garage_motion
+        camera_image: camera.garage_snapshot
+        entities:
+          - entity: binary_sensor.garage_motion
+            name: Motion
+          - entity: binary_sensor.garage_door
+            name: Door
+
+      - type: picture-glance
+        title: Garden
+        entity: binary_sensor.garden_motion
+        camera_image: camera.garden_snapshot
+        entities:
+          - entity: binary_sensor.garden_motion
+            name: Motion
+
+  # ─── GARAGE ────────────────────────────────────────────────────────────────
+  - title: Garage
+    path: garage
+    icon: mdi:garage
+    cards:
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: cover.double
+            name: 2-Car (Right)
+            icon: mdi:garage
+            tap_action:
+              action: toggle
+          - type: button
+            entity: cover.single
+            name: Gym (Left)
+            icon: mdi:garage-variant
+            tap_action:
+              action: toggle
+
+      - type: entities
+        title: Status
+        entities:
+          - entity: cover.double
+            name: 2-Car Door (Right)
+          - entity: cover.single
+            name: Gym Door (Left)
+          - entity: binary_sensor.garage_door
+            name: Ring Sensor
+          - entity: binary_sensor.garage_motion
+            name: Motion
+
+      - type: picture-glance
+        title: Garage Camera
+        entity: binary_sensor.garage_motion
+        camera_image: camera.garage_snapshot
+        entities:
+          - entity: binary_sensor.garage_motion
+            name: Motion
+          - entity: cover.double
+            name: 2-Car
+          - entity: cover.single
+            name: Gym
+
+  # ─── CLIMATE ───────────────────────────────────────────────────────────────
+  - title: Climate
+    path: climate
+    icon: mdi:thermometer
+    cards:
+
+      - type: markdown
+        content: >
+          ## Thermostat — Coming Soon
+
+          Honeywell TCC integration is parked. Will be added once the
+          integration issue is resolved.
+
+  # ─── GARDEN ────────────────────────────────────────────────────────────────
+  - title: Garden
+    path: garden
+    icon: mdi:sprinkler-variant
+    cards:
+
+      - type: entities
+        title: Sprinkler System
+        entities:
+          - entity: sensor.sprinkler_system_state
+            name: State
+          - entity: sensor.sprinkler_system_next_watering
+            name: Next Watering
+          - entity: switch.sprinkler_system_rain_delay
+            name: Rain Delay
+
+      - type: entities
+        title: Zones
+        entities:
+          - entity: switch.sprinkler_system_front_left_towards_brett_smart_watering
+            name: Front Left
+          - entity: switch.sprinkler_system_front_right_1_towards_pradeep_smart_watering
+            name: Front Right 1
+          - entity: switch.sprinkler_system_front_right_2_towards_pradeep_smart_watering
+            name: Front Right 2
+          - entity: switch.sprinkler_system_front_right_facing_road_smart_watering
+            name: Facing Road
+
+      - type: entities
+        title: Programs
+        entities:
+          - entity: switch.sprinkler_system_lawn_program
+            name: Lawn
+          - entity: switch.sprinkler_system_program_b_program
+            name: Program B
+          - entity: switch.sprinkler_system_smart_watering
+            name: Smart Watering
+
+      - type: glance
+        title: Zone History
+        show_state: true
+        columns: 2
+        entities:
+          - entity: sensor.sprinkler_system_front_left_towards_brett_zone_history
+            name: Front Left
+          - entity: sensor.sprinkler_system_front_right_1_towards_pradeep_zone_history
+            name: Front Right 1
+          - entity: sensor.sprinkler_system_front_right_2_towards_pradeep_zone_history
+            name: Front Right 2
+          - entity: sensor.sprinkler_system_front_right_facing_road_zone_history
+            name: Facing Road
+
+  # ─── CHAT ──────────────────────────────────────────────────────────────────
+  - title: Chat
+    path: chat
+    icon: mdi:chat
+    cards:
+
+      - type: button
+        name: Open AI Assistant
+        icon: mdi:microphone-message
+        tap_action:
+          action: assist

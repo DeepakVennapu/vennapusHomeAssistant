@@ -1,12 +1,24 @@
 - id: leave_for_work_close_garage
   alias: "Leave for Work — Close Garages"
-  description: "When Deepak leaves home zone, close both garage doors"
+  description: "When both Deepak and Bunny are away, close both garage doors"
   trigger:
     - platform: state
       entity_id: person.deepak_aryan
       from: "home"
       to: "not_home"
-  condition: []
+    - platform: state
+      entity_id: person.bunny
+      from: "home"
+      to: "not_home"
+  condition:
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: person.deepak_aryan
+          state: "home"
+        - condition: state
+          entity_id: person.bunny
+          state: "home"
   action:
     - action: cover.close_cover
       target:
@@ -16,11 +28,15 @@
     - action: notify.mobile_app_deepak
       data:
         title: "Garage Closed"
-        message: "Both garage doors closed as you left home."
+        message: "Both garage doors closed — everyone has left home."
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Garage Closed"
+        message: "Both garage doors closed — everyone has left home."
   mode: single
 
-- id: arriving_home_open_garage
-  alias: "Arriving Home — Open Garage"
+- id: arriving_home_open_garage_deepak
+  alias: "Arriving Home — Open Garage (Deepak)"
   description: "When Deepak enters the near-home zone, open the double garage"
   trigger:
     - platform: zone
@@ -38,6 +54,73 @@
         message: "Double garage opening — almost there!"
   mode: single
 
+- id: arriving_home_open_garage_bunny
+  alias: "Arriving Home — Open Garage (Bunny)"
+  description: "When Bunny enters the near-home zone, open the single garage"
+  trigger:
+    - platform: zone
+      entity_id: person.bunny
+      zone: zone.near_home
+      event: enter
+  condition: []
+  action:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.single
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Welcome Home"
+        message: "Gym garage opening — almost there!"
+  mode: single
+
+- id: arriving_home_close_garage_deepak
+  alias: "Arriving Home — Close Garage After 5 Min (Deepak)"
+  description: "When Deepak enters the home zone, close the double garage after 5 minutes"
+  trigger:
+    - platform: zone
+      entity_id: person.deepak_aryan
+      zone: zone.home
+      event: enter
+  condition:
+    - condition: state
+      entity_id: cover.double
+      state: "open"
+  action:
+    - delay:
+        minutes: 5
+    - action: cover.close_cover
+      target:
+        entity_id: cover.double
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Garage Closed"
+        message: "Double garage closed 5 minutes after you arrived home."
+  mode: single
+
+- id: arriving_home_close_garage_bunny
+  alias: "Arriving Home — Close Garage After 5 Min (Bunny)"
+  description: "When Bunny enters the home zone, close the single garage after 5 minutes"
+  trigger:
+    - platform: zone
+      entity_id: person.bunny
+      zone: zone.home
+      event: enter
+  condition:
+    - condition: state
+      entity_id: cover.single
+      state: "open"
+  action:
+    - delay:
+        minutes: 5
+    - action: cover.close_cover
+      target:
+        entity_id: cover.single
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Garage Closed"
+        message: "Gym garage closed 5 minutes after you arrived home."
+  mode: single
+
 - id: garage_open_too_long
   alias: "Garage Open > 10 Minutes"
   description: "Notify if either garage door stays open for more than 10 minutes"
@@ -52,6 +135,10 @@
   condition: []
   action:
     - action: notify.mobile_app_deepak
+      data:
+        title: "Garage Left Open"
+        message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
+    - action: notify.mobile_app_bunny
       data:
         title: "Garage Left Open"
         message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
@@ -79,6 +166,10 @@
       data:
         title: "Door/Window Left Open"
         message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Door/Window Left Open"
+        message: "{{ trigger.to_state.attributes.friendly_name }} has been open for over 10 minutes."
   mode: parallel
   max: 6
 
@@ -94,6 +185,16 @@
   condition: []
   action:
     - action: notify.mobile_app_deepak
+      data:
+        title: "ALARM TRIGGERED"
+        message: "Ring alarm is going off at home!"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+    - action: notify.mobile_app_bunny
       data:
         title: "ALARM TRIGGERED"
         message: "Ring alarm is going off at home!"
@@ -119,6 +220,16 @@
   condition: []
   action:
     - action: notify.mobile_app_deepak
+      data:
+        title: "⚠️ {{ trigger.to_state.attributes.friendly_name }} Alert"
+        message: "{{ trigger.to_state.attributes.friendly_name }} detected at home — check immediately!"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+    - action: notify.mobile_app_bunny
       data:
         title: "⚠️ {{ trigger.to_state.attributes.friendly_name }} Alert"
         message: "{{ trigger.to_state.attributes.friendly_name }} detected at home — check immediately!"
@@ -154,6 +265,10 @@
       data:
         title: "Motion Detected"
         message: "{{ trigger.to_state.attributes.friendly_name }} at {{ now().strftime('%I:%M %p') }}"
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Motion Detected"
+        message: "{{ trigger.to_state.attributes.friendly_name }} at {{ now().strftime('%I:%M %p') }}"
   mode: parallel
   max: 4
 
@@ -172,19 +287,35 @@
       data:
         title: "Front Door Still Unlocked"
         message: "The front door has been unlocked for over 10 minutes."
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Front Door Still Unlocked"
+        message: "The front door has been unlocked for over 10 minutes."
   mode: single
 
 # ─── PRESENCE ──────────────────────────────────────────────────────────────
 
 - id: last_person_leaves_arm_away
   alias: "Last Person Leaves — Arm Away"
-  description: "When Deepak leaves and nobody is home, lock up and arm away"
+  description: "When the last person leaves home, lock up and arm away"
   trigger:
     - platform: state
       entity_id: person.deepak_aryan
       from: "home"
       to: "not_home"
-  condition: []
+    - platform: state
+      entity_id: person.bunny
+      from: "home"
+      to: "not_home"
+  condition:
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: person.deepak_aryan
+          state: "home"
+        - condition: state
+          entity_id: person.bunny
+          state: "home"
   action:
     - action: lock.lock
       target:
@@ -196,14 +327,22 @@
       data:
         title: "House Secured"
         message: "Front door locked and alarm armed away."
+    - action: notify.mobile_app_bunny
+      data:
+        title: "House Secured"
+        message: "Front door locked and alarm armed away."
   mode: single
 
 - id: arriving_home_disarm_alarm
   alias: "Arriving Home — Disarm Alarm"
-  description: "Disarm alarm when Deepak enters the near-home zone"
+  description: "Disarm alarm when Deepak or Bunny enters the near-home zone"
   trigger:
     - platform: zone
       entity_id: person.deepak_aryan
+      zone: zone.near_home
+      event: enter
+    - platform: zone
+      entity_id: person.bunny
       zone: zone.near_home
       event: enter
   condition:
@@ -247,6 +386,17 @@
           state: "on"
   action:
     - action: notify.mobile_app_deepak
+      data:
+        title: "Midnight Check — Something's Open"
+        message: >
+          Still open at midnight:
+          {%- if is_state('cover.double', 'open') %} Double garage,{%- endif %}
+          {%- if is_state('cover.single', 'open') %} Single garage,{%- endif %}
+          {%- if is_state('binary_sensor.front_door', 'on') %} Front door,{%- endif %}
+          {%- if is_state('binary_sensor.backyard_door', 'on') %} Backyard door,{%- endif %}
+          {%- if is_state('binary_sensor.back_window', 'on') %} Back window,{%- endif %}
+          {%- if is_state('binary_sensor.basement_door', 'on') %} Basement door.{%- endif %}
+    - action: notify.mobile_app_bunny
       data:
         title: "Midnight Check — Something's Open"
         message: >
