@@ -24,23 +24,23 @@ class IntentResult:
 _TIER1_RULES = [
     # Lock / unlock
     (r"\b(lock\s*up|secure\s+the\s+house)\b", "script", "script.lock_up"),
-    (r"\b(lock|secure)\b.*(door|front)", "service", ("lock", "lock", "lock.front_door")),
-    (r"\bunlock\b.*(door|front)", "service", ("lock", "unlock", "lock.front_door")),
+    (r"\b(lock|secure)\b.*(door|front)", "service", ("lock", "lock", "lock.main_door")),
+    (r"\bunlock\b.*(door|front)", "service", ("lock", "unlock", "lock.main_door")),
 
     # Garages — specific
-    (r"\bclose\b.*\bdouble\b.*\bgarage\b", "service", ("cover", "close_cover", "cover.double_car_garage_door")),
-    (r"\bclose\b.*\bsingle\b.*\bgarage\b", "service", ("cover", "close_cover", "cover.single_car_garage_door")),
-    (r"\bopen\b.*\bdouble\b.*\bgarage\b", "service", ("cover", "open_cover", "cover.double_car_garage_door")),
-    (r"\bopen\b.*\bsingle\b.*\bgarage\b", "service", ("cover", "open_cover", "cover.single_car_garage_door")),
+    (r"\bclose\b.*\bdouble\b.*\bgarage\b", "service", ("cover", "close_cover", "cover.double")),
+    (r"\bclose\b.*\bsingle\b.*\bgarage\b", "service", ("cover", "close_cover", "cover.single")),
+    (r"\bopen\b.*\bdouble\b.*\bgarage\b", "service", ("cover", "open_cover", "cover.double")),
+    (r"\bopen\b.*\bsingle\b.*\bgarage\b", "service", ("cover", "open_cover", "cover.single")),
 
     # Garages — generic (close both)
     (r"\bclose\b.*(garage|garages)\b", "script", "script.close_all_garages"),
-    (r"\bopen\b.*(garage)\b", "service", ("cover", "open_cover", "cover.double_car_garage_door")),
+    (r"\bopen\b.*(garage)\b", "service", ("cover", "open_cover", "cover.double")),
 
     # Alarm
-    (r"\barm\b.*(alarm|home)\b(?!.*away)", "service", ("alarm_control_panel", "alarm_arm_home", "alarm_control_panel.ring_alarm")),
-    (r"\barm\b.*\baway\b", "service", ("alarm_control_panel", "alarm_arm_away", "alarm_control_panel.ring_alarm")),
-    (r"\bdisarm\b.*(alarm)?", "service", ("alarm_control_panel", "alarm_disarm", "alarm_control_panel.ring_alarm")),
+    (r"\barm\b.*(alarm|home)\b(?!.*away)", "service", ("alarm_control_panel", "alarm_arm_home", "alarm_control_panel.deevana2_alarm")),
+    (r"\barm\b.*\baway\b", "service", ("alarm_control_panel", "alarm_arm_away", "alarm_control_panel.deevana2_alarm")),
+    (r"\bdisarm\b.*(alarm)?", "service", ("alarm_control_panel", "alarm_disarm", "alarm_control_panel.deevana2_alarm")),
 
     # Sprinkler rain delay
     (r"\brain\s*delay\b", "service", ("input_boolean", "turn_on", "input_boolean.rain_delay")),
@@ -62,9 +62,9 @@ _TIER2_RULES = [
 ]
 
 _TIER3_TIME_RULES = [
-    (r"\bclose\b.*(double\s+)?garage\b.*(in\s+\d|at\s+)", ("cover", "close_cover", "cover.double_car_garage_door")),
-    (r"\bclose\b.*(single\s+)?garage\b.*(in\s+\d|at\s+)", ("cover", "close_cover", "cover.single_car_garage_door")),
-    (r"\barm\b.*(alarm)?.*(in\s+\d|at\s+)", ("alarm_control_panel", "alarm_arm_home", "alarm_control_panel.ring_alarm")),
+    (r"\bclose\b.*(double\s+)?garage\b.*(in\s+\d|at\s+)", ("cover", "close_cover", "cover.double")),
+    (r"\bclose\b.*(single\s+)?garage\b.*(in\s+\d|at\s+)", ("cover", "close_cover", "cover.single")),
+    (r"\barm\b.*(alarm)?.*(in\s+\d|at\s+)", ("alarm_control_panel", "alarm_arm_home", "alarm_control_panel.deevana2_alarm")),
     (r"\bclose\b.*(garage|garages)\b.*(in\s+\d|at\s+)", "script.close_all_garages"),
 ]
 
@@ -167,16 +167,16 @@ class IntentEngine:
 
     def _execute_tier2(self, query_type: str) -> IntentResult:
         if query_type == "lock_status":
-            state = self._client.get_state("lock.front_door")["state"]
-            return IntentResult(tier=2, response=f"The front door is {state}.")
+            state = self._client.get_state("lock.main_door")["state"]
+            return IntentResult(tier=2, response=f"The main door is {state}.")
 
         elif query_type == "garage_status":
-            double = self._client.get_state("cover.double_car_garage_door")["state"]
-            single = self._client.get_state("cover.single_car_garage_door")["state"]
+            double = self._client.get_state("cover.double")["state"]
+            single = self._client.get_state("cover.single")["state"]
             return IntentResult(tier=2, response=f"Double garage is {double}, single garage is {single}.")
 
         elif query_type == "alarm_status":
-            state = self._client.get_state("alarm_control_panel.ring_alarm")["state"]
+            state = self._client.get_state("alarm_control_panel.deevana2_alarm")["state"]
             return IntentResult(tier=2, response=f"Alarm is {state.replace('_', ' ')}.")
 
         elif query_type == "house_secure":
@@ -190,13 +190,13 @@ class IntentEngine:
     def _house_secure_check(self) -> IntentResult:
         states = {s["entity_id"]: s["state"] for s in self._client.get_states()}
         issues = []
-        if states.get("lock.front_door") != "locked":
-            issues.append("front door is unlocked")
-        if states.get("cover.double_car_garage_door") != "closed":
+        if states.get("lock.main_door") != "locked":
+            issues.append("main door is unlocked")
+        if states.get("cover.double") != "closed":
             issues.append("double garage is open")
-        if states.get("cover.single_car_garage_door") != "closed":
+        if states.get("cover.single") != "closed":
             issues.append("single garage is open")
-        alarm = states.get("alarm_control_panel.ring_alarm", "unknown")
+        alarm = states.get("alarm_control_panel.deevana2_alarm", "unknown")
         if alarm not in ("armed_home", "armed_away"):
             issues.append(f"alarm is {alarm.replace('_', ' ')}")
 

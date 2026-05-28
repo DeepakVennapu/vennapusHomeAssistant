@@ -1,10 +1,10 @@
 import json
 import os
 import re
-import subprocess
 import threading
 from collections import deque
 
+from google import genai
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 
@@ -28,11 +28,13 @@ engine = IntentEngine(client=_ha, people=_people)
 session_history: deque = deque(maxlen=5)
 
 _KEY_ENTITIES = [
-    "lock.front_door",
-    "cover.double_car_garage_door",
-    "cover.single_car_garage_door",
-    "alarm_control_panel.ring_alarm",
-    "binary_sensor.front_door_contact",
+    "lock.main_door",
+    "cover.double",
+    "cover.single",
+    "alarm_control_panel.deevana2_alarm",
+    "binary_sensor.garage_door",
+    "binary_sensor.front_door",
+    "binary_sensor.backyard_door",
 ]
 
 
@@ -108,15 +110,14 @@ Respond in natural language. If a device action is needed, include tool call JSO
 Only include JSON lines for actions to execute. Speak naturally for everything else."""
 
     try:
-        result = subprocess.run(
-            ["claude", "-p", prompt],
-            capture_output=True,
-            text=True,
-            timeout=10,
+        client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt,
         )
-        output = result.stdout.strip()
-    except subprocess.TimeoutExpired:
-        return "That took too long, please try again.", []
+        output = response.text.strip()
+    except Exception as e:
+        return f"AI error: {e}", []
 
     actions = _parse_claude_actions(output)
     clean_lines = [

@@ -3,8 +3,9 @@
   "name": "Claude AI Assistant",
   "version": "1.0.0",
   "documentation": "",
-  "dependencies": [],
+  "dependencies": ["conversation"],
   "codeowners": [],
   "requirements": [],
+  "config_flow": true,
   "iot_class": "local_polling"
 }

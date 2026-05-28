@@ -8,6 +8,7 @@ services:
       - TZ=America/Denver
     ports:
       - "8123:8123"
+    privileged: true
     restart: unless-stopped
     networks:
       - ha_net
