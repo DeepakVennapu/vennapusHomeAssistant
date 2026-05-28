@@ -12,7 +12,7 @@ _LOGGER = logging.getLogger(__name__)
 BRIDGE_URL = "http://ha_bridge:8124/converse"
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities) -> bool:
     agent = ClaudeConversationAgent(hass)
     conversation.async_set_agent(hass, entry, agent)
     return True
