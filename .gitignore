@@ -2,3 +2,33 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# HA runtime files
+config/.HA_VERSION
+config/.cache/
+config/.ha_run.lock
+config/.storage/
+config/*.db
+config/*.db-shm
+config/*.db-wal
+config/*.log
+config/*.log.*
+config/image/
+config/blueprints/
+config/scenes.yaml
+
+# Secrets
+config/secrets.yaml
+mosquitto/config/passwd
+
+# Third-party custom components
+config/custom_components/bhyve/
+config/custom_components/hacs/
+config/custom_components/kwikset/
+
+# Mosquitto runtime
+mosquitto/data/
+mosquitto/log/
+
+# ring-mqtt runtime
+ring-mqtt/
