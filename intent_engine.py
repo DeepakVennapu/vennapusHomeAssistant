@@ -71,6 +71,13 @@ _TIER2_RULES = [
     (r"\bis\s+the\s+(house|home)\s+secure\??", "house_secure"),
     (r"\b(who.?s\s+home|who\s+is\s+home|anyone\s+home)\??", "whos_home"),
     (r"\b(alarm\s+status|is\s+the\s+alarm)\b", "alarm_status"),
+
+    # Tesla status queries
+    (r"\b(what.?s|how\s+much|check)\s+(my\s+)?(battery|charge)\b|\bhow\s+charged\b", "tesla_battery"),
+    (r"\bwhat.?s\s+my\s+range\b|\bhow\s+far\s+can\s+(the\s+)?tesla\b", "tesla_range"),
+    (r"\bis\s+(my\s+|the\s+)?(car|tesla)\s+(locked|unlocked)\??", "tesla_lock_status"),
+    (r"\bis\s+(my\s+|the\s+)?(car|tesla)\s+charg(ing|ed)\??|\bis\s+the\s+tesla\s+plug", "tesla_charging_status"),
+    (r"\bwhere\s+is\s+(my\s+|the\s+)?(car|tesla)\b", "tesla_location"),
 ]
 
 _TIER3_TIME_RULES = [
@@ -202,6 +209,52 @@ class IntentEngine:
 
         elif query_type == "whos_home":
             return self._whos_home()
+
+        elif query_type == "tesla_battery":
+            battery = self._client.get_state("sensor.hermoine_s_den_battery_level")
+            range_ = self._client.get_state("sensor.hermoine_s_den_battery_range")
+            if battery["state"] == "unavailable":
+                return IntentResult(tier=2, response="Tesla status unavailable right now.")
+            return IntentResult(
+                tier=2,
+                response=f"Your Tesla is at {battery['state']}% — {int(float(range_['state']))} miles of range.",
+            )
+
+        elif query_type == "tesla_range":
+            range_ = self._client.get_state("sensor.hermoine_s_den_battery_range")
+            if range_["state"] == "unavailable":
+                return IntentResult(tier=2, response="Tesla status unavailable right now.")
+            return IntentResult(tier=2, response=f"Your Tesla has {int(float(range_['state']))} miles of range.")
+
+        elif query_type == "tesla_lock_status":
+            state = self._client.get_state("lock.hermoine_s_den_lock")
+            if state["state"] == "unavailable":
+                return IntentResult(tier=2, response="Tesla status unavailable right now.")
+            return IntentResult(tier=2, response=f"Your Tesla is {state['state']}.")
+
+        elif query_type == "tesla_charging_status":
+            charging = self._client.get_state("sensor.hermoine_s_den_charging")
+            if charging["state"] == "unavailable":
+                return IntentResult(tier=2, response="Tesla status unavailable right now.")
+            if charging["state"] == "charging":
+                rate = self._client.get_state("sensor.hermoine_s_den_charge_rate")
+                eta = self._client.get_state("sensor.hermoine_s_den_time_to_full_charge")
+                eta_str = f", {eta['state']} hours to full" if eta["state"] not in ("unavailable", "unknown") else ""
+                return IntentResult(
+                    tier=2,
+                    response=f"Charging at {rate['state']} mi/hr{eta_str}.",
+                )
+            else:
+                cable = self._client.get_state("binary_sensor.hermoine_s_den_charge_cable")
+                plugged_str = "plugged in" if cable["state"] == "on" else "not plugged in"
+                return IntentResult(tier=2, response=f"Not charging. Car is {plugged_str}.")
+
+        elif query_type == "tesla_location":
+            loc = self._client.get_state("device_tracker.hermoine_s_den_location")
+            if loc["state"] == "unavailable":
+                return IntentResult(tier=2, response="Tesla location unavailable right now.")
+            location_str = "at home" if loc["state"] == "home" else f"at {loc['state']}"
+            return IntentResult(tier=2, response=f"Your Tesla is {location_str}.")
 
         return IntentResult(tier=4, response="")
 

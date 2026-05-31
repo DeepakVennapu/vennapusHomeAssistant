@@ -238,3 +238,73 @@ def test_tier1_tesla_stop_climate_no_false_positive(engine, mock_client):
         call[0] == ("climate", "turn_off", "climate.hermoine_s_den_climate")
         for call in mock_client.call_service.call_args_list
     )
+
+# --- Tesla Tier 2 tests ---
+
+TESLA_BATTERY_ENTITY = "sensor.hermoine_s_den_battery_level"
+TESLA_RANGE_ENTITY = "sensor.hermoine_s_den_battery_range"
+TESLA_LOCK_ENTITY = "lock.hermoine_s_den_lock"
+TESLA_CHARGING_ENTITY = "sensor.hermoine_s_den_charging"
+TESLA_CHARGE_RATE_ENTITY = "sensor.hermoine_s_den_charge_rate"
+TESLA_TIME_TO_FULL_ENTITY = "sensor.hermoine_s_den_time_to_full_charge"
+TESLA_CHARGE_CABLE_ENTITY = "binary_sensor.hermoine_s_den_charge_cable"
+TESLA_LOCATION_ENTITY = "device_tracker.hermoine_s_den_location"
+
+def test_tier2_tesla_battery_query(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: {
+        TESLA_BATTERY_ENTITY: {"state": "85"},
+        TESLA_RANGE_ENTITY: {"state": "247.5"},
+    }.get(eid, {"state": "unknown"})
+    result = engine.classify("what's my battery")
+    assert result.tier == 2
+    assert "85%" in result.response
+    assert "247" in result.response
+
+def test_tier2_tesla_battery_unavailable(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: {"state": "unavailable"}
+    result = engine.classify("how charged is the Tesla")
+    assert result.tier == 2
+    assert "unavailable" in result.response.lower()
+
+def test_tier2_tesla_lock_status_locked(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: (
+        {"state": "locked"} if eid == TESLA_LOCK_ENTITY else {"state": "unknown"}
+    )
+    result = engine.classify("is my car locked")
+    assert result.tier == 2
+    assert "locked" in result.response.lower()
+
+def test_tier2_tesla_lock_status_unlocked(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: (
+        {"state": "unlocked"} if eid == TESLA_LOCK_ENTITY else {"state": "unknown"}
+    )
+    result = engine.classify("is the Tesla locked")
+    assert result.tier == 2
+    assert "unlocked" in result.response.lower()
+
+def test_tier2_tesla_charging_active(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: {
+        TESLA_CHARGING_ENTITY: {"state": "charging"},
+        TESLA_CHARGE_RATE_ENTITY: {"state": "32.0"},
+        TESLA_TIME_TO_FULL_ENTITY: {"state": "1.5"},
+    }.get(eid, {"state": "unknown"})
+    result = engine.classify("is my car charging")
+    assert result.tier == 2
+    assert "32" in result.response
+
+def test_tier2_tesla_charging_disconnected(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: {
+        TESLA_CHARGING_ENTITY: {"state": "disconnected"},
+        TESLA_CHARGE_CABLE_ENTITY: {"state": "off"},
+    }.get(eid, {"state": "unknown"})
+    result = engine.classify("is the Tesla charging")
+    assert result.tier == 2
+    assert "not charging" in result.response.lower()
+
+def test_tier2_tesla_location_home(engine, mock_client):
+    mock_client.get_state.side_effect = lambda eid: (
+        {"state": "home"} if eid == TESLA_LOCATION_ENTITY else {"state": "unknown"}
+    )
+    result = engine.classify("where is my car")
+    assert result.tier == 2
+    assert "home" in result.response.lower()
