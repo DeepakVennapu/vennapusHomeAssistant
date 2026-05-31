@@ -335,6 +335,27 @@ views:
               target:
                 entity_id: lock.hermoine_s_den_lock
 
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: climate.hermoine_s_den_climate
+            name: Climate On
+            icon: mdi:fan
+            tap_action:
+              action: call-service
+              service: climate.turn_on
+              target:
+                entity_id: climate.hermoine_s_den_climate
+          - type: button
+            entity: climate.hermoine_s_den_climate
+            name: Climate Off
+            icon: mdi:fan-off
+            tap_action:
+              action: call-service
+              service: climate.turn_off
+              target:
+                entity_id: climate.hermoine_s_den_climate
+
       - type: thermostat
         entity: climate.hermoine_s_den_climate
         name: Climate
