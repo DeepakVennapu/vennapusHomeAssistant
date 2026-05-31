@@ -92,3 +92,22 @@ lock_up:
       target:
         entity_id: alarm_control_panel.deevana2_alarm
   mode: single
+
+tesla_leave_prep:
+  alias: Tesla Leave Prep
+  sequence:
+    - action: climate.turn_on
+      target:
+        entity_id: climate.hermoine_s_den_climate
+    - action: lock.lock
+      target:
+        entity_id: lock.hermoine_s_den_lock
+  mode: single
+
+tesla_goodnight:
+  alias: Tesla Goodnight
+  sequence:
+    - action: lock.lock
+      target:
+        entity_id: lock.hermoine_s_den_lock
+  mode: single
