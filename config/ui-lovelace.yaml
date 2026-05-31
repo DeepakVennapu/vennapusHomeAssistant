@@ -279,3 +279,68 @@ views:
         icon: mdi:microphone-message
         tap_action:
           action: assist
+
+  # ─── TESLA ─────────────────────────────────────────────────────────────────
+  - title: Tesla
+    path: tesla
+    icon: mdi:car-electric
+    cards:
+
+      - type: gauge
+        entity: sensor.hermoine_s_den_battery_level
+        name: Battery
+        min: 0
+        max: 100
+        severity:
+          green: 50
+          yellow: 20
+          red: 0
+
+      - type: glance
+        title: Range & Charging
+        entities:
+          - entity: sensor.hermoine_s_den_battery_range
+            name: Range (mi)
+          - entity: sensor.hermoine_s_den_charge_rate
+            name: Charge Rate
+          - entity: sensor.hermoine_s_den_time_to_full_charge
+            name: Time to Full
+
+      - type: entities
+        title: Status
+        entities:
+          - entity: binary_sensor.hermoine_s_den_charge_cable
+            name: Plugged In
+          - entity: sensor.hermoine_s_den_charging
+            name: Charging
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: lock.hermoine_s_den_lock
+            name: Lock
+            icon: mdi:car-key
+            tap_action:
+              action: call-service
+              service: lock.lock
+              target:
+                entity_id: lock.hermoine_s_den_lock
+          - type: button
+            entity: lock.hermoine_s_den_lock
+            name: Unlock
+            icon: mdi:car-key-outline
+            tap_action:
+              action: call-service
+              service: lock.unlock
+              target:
+                entity_id: lock.hermoine_s_den_lock
+
+      - type: thermostat
+        entity: climate.hermoine_s_den_climate
+        name: Climate
+
+      - type: map
+        entities:
+          - entity: device_tracker.hermoine_s_den_location
+        title: Location
+        hours_to_show: 1
