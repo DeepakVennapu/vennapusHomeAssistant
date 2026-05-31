@@ -400,3 +400,82 @@
         title: "Rain Delay Enabled"
         message: "Sprinkler rain delay turned on — rain forecast today."
   mode: single
+
+# ─── TESLA ────────────────────────────────────────────────────────────────
+
+- id: tesla_charging_complete
+  alias: "Tesla — Charging Complete"
+  description: "Notify when Tesla reaches 100% charge (LFP battery — 100% is correct target)"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.hermoine_s_den_battery_level
+      above: 99
+  condition:
+    - condition: state
+      entity_id: binary_sensor.hermoine_s_den_charge_cable
+      state: "on"
+  action:
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Tesla Fully Charged"
+        message: "Hermoine is at 100% — safe to unplug."
+  mode: single
+
+- id: tesla_leave_prep_auto
+  alias: "Tesla — Leave Prep (Auto)"
+  description: "Start Tesla climate when Deepak leaves home"
+  trigger:
+    - platform: state
+      entity_id: person.deepak_aryan
+      from: "home"
+      to: "not_home"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.hermoine_s_den_charge_cable
+      state: "on"
+  action:
+    - action: script.turn_on
+      target:
+        entity_id: script.tesla_leave_prep
+  mode: single
+
+- id: tesla_plugged_in_reminder
+  alias: "Tesla — Plugged In Reminder"
+  description: "Remind Deepak to plug in Tesla if not plugged in 30 min after arriving home"
+  trigger:
+    - platform: state
+      entity_id: person.deepak_aryan
+      to: "home"
+  condition: []
+  action:
+    - delay: "00:30:00"
+    - condition: state
+      entity_id: binary_sensor.hermoine_s_den_charge_cable
+      state: "off"
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Hermoine Not Plugged In"
+        message: "Your Tesla isn't plugged in — don't forget!"
+  mode: single
+
+- id: tesla_left_unlocked
+  alias: "Tesla — Left Unlocked on Departure"
+  description: "Lock Tesla and notify if it's unlocked when Deepak leaves home"
+  trigger:
+    - platform: state
+      entity_id: person.deepak_aryan
+      from: "home"
+      to: "not_home"
+  condition:
+    - condition: state
+      entity_id: lock.hermoine_s_den_lock
+      state: "unlocked"
+  action:
+    - action: lock.lock
+      target:
+        entity_id: lock.hermoine_s_den_lock
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Tesla Locked"
+        message: "Hermoine was unlocked — locking her now."
+  mode: single
