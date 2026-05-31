@@ -229,3 +229,12 @@ def test_tier1_tesla_lock_does_not_match_front_door(engine, mock_client):
     result = engine.classify("lock the door")
     assert result.tier == 1
     mock_client.call_service.assert_called_once_with("lock", "lock", "lock.main_door")
+
+def test_tier1_tesla_stop_climate_no_false_positive(engine, mock_client):
+    """'turn off the AC' without car/tesla context should NOT trigger Tesla climate."""
+    result = engine.classify("turn off the AC")
+    # Should NOT call Tesla climate service
+    assert result.tier != 1 or not any(
+        call[0] == ("climate", "turn_off", "climate.hermoine_s_den_climate")
+        for call in mock_client.call_service.call_args_list
+    )

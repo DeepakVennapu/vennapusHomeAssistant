@@ -26,7 +26,7 @@ _TIER1_RULES = [
     (r"\b(lock|secure)\b.*(my\s+)?(car|tesla)\b", "service", ("lock", "lock", "lock.hermoine_s_den_lock")),
     (r"\bunlock\b.*(my\s+)?(car|tesla)\b", "service", ("lock", "unlock", "lock.hermoine_s_den_lock")),
     (r"\b(start|turn\s+on)\b.*(climate|heat|ac)\b|\bwarm\s+up\b.*(the\s+)?(car|tesla)\b|\bcool\s+down\b.*(the\s+)?(car|tesla)\b", "service", ("climate", "turn_on", "climate.hermoine_s_den_climate")),
-    (r"\b(stop|turn\s+off)\b.*(climate|heat|ac)\b", "service", ("climate", "turn_off", "climate.hermoine_s_den_climate")),
+    (r"\b(stop|turn\s+off)\b.*(climate)\b|\b(stop|turn\s+off)\b.*\b(car|tesla)\b.*\b(heat|ac)\b|\b(stop|turn\s+off)\b.*(heat|ac)\b.*(car|tesla)\b", "service", ("climate", "turn_off", "climate.hermoine_s_den_climate")),
     (r"\bstart\s+charg(e|ing)\b.*(the\s+)?(car|tesla)\b", "service", ("switch", "turn_on", "switch.hermoine_s_den_charge")),
     (r"\bstop\s+charg(e|ing)\b.*(the\s+)?(car|tesla)\b", "service", ("switch", "turn_off", "switch.hermoine_s_den_charge")),
 
