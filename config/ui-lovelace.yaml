@@ -328,7 +328,7 @@ views:
           - type: button
             entity: lock.hermoine_s_den_lock
             name: Unlock
-            icon: mdi:car-key-outline
+            icon: mdi:lock-open-outline
             tap_action:
               action: call-service
               service: lock.unlock
