@@ -1,0 +1,121 @@
+# Home Assistant — Deepak's Smart Home
+
+Self-hosted smart home running on an iMac via Docker Compose. Home Assistant handles device control and automations; Cloudflare Tunnel provides secure remote access.
+
+## Remote Access
+
+**URL:** https://hass.deevana.uk
+
+## Architecture
+
+```
+You / Partner
+  ├── https://hass.deevana.uk  ←  Cloudflare Tunnel  ←  cloudflared (iMac daemon)
+  └── http://192.168.x.x:8123  ←  local network
+        └── Home Assistant (Docker)
+              ├── Mosquitto MQTT broker (Docker)
+              └── ring-mqtt (Docker) — bridges Ring devices to HA
+```
+
+## Stack
+
+| Container | Purpose |
+|-----------|---------|
+| `homeassistant` | HA core — automations, dashboard, integrations |
+| `mosquitto` | MQTT broker for ring-mqtt |
+| `ring-mqtt` | Bridges Ring alarm, cameras, sensors to HA via MQTT |
+
+## Device Integrations
+
+| Device | Integration | Type |
+|--------|-------------|------|
+| Ring alarm + sensors (7) + cameras (2) + doorbell | ring-mqtt | HACS/Docker |
+| Aladdin Connect garage doors (2) | Official | Cloud |
+| Kwikset Halo Select lock | kwikset-ha | HACS (explosivo22/kwikset-ha) |
+| B-Hyve sprinklers (8 zones) | bhyve | HACS |
+| Honeywell FocusPRO S200 thermostat | — | Parked |
+
+## Quick Start
+
+```bash
+# Start all services
+docker compose up -d
+
+# Stop all services
+docker compose down
+
+# Restart HA only
+docker compose restart homeassistant
+
+# View HA logs
+docker compose logs homeassistant -f
+```
+
+## Key Files
+
+```
+homeassistant/
+├── docker-compose.yml          # All services
+├── config/
+│   ├── configuration.yaml      # HA core config (http, trusted proxies)
+│   ├── automations.yaml        # All automations
+│   ├── scripts.yaml
+│   └── scenes.yaml
+├── mosquitto/
+│   └── config/                 # Mosquitto broker config
+└── ring-mqtt/                  # ring-mqtt persistent data + auth
+```
+
+## Cloudflare Tunnel
+
+The `cloudflared` service is installed as a macOS system service (runs on boot):
+
+```bash
+# Check tunnel status
+sudo cloudflared service status
+
+# View tunnel logs
+sudo cloudflared service log
+```
+
+Tunnel routes `hass.deevana.uk` → `http://localhost:8123`
+
+The `configuration.yaml` includes trusted proxy settings required for the tunnel to work:
+```yaml
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
+    - 192.168.65.1   # Docker internal gateway
+```
+
+## Confirmed Entity IDs
+
+These were verified in HA Developer Tools — use these in automations and scripts, not guessed names.
+
+| Device | Entity ID |
+|--------|-----------|
+| Double garage door | `cover.double` |
+| Single garage door | `cover.single` |
+| Front door lock (Kwikset) | `lock.main_door` |
+| Ring alarm panel | `alarm_control_panel.deevana2_alarm` |
+| Deepak (person) | `person.deepak_aryan` |
+| Bunny (person) | `person.bunny` |
+| Deepak (device tracker) | `device_tracker.deepak` |
+| Bunny (device tracker) | `device_tracker.bunny` |
+
+> Always use `person.*` entities (not `device_tracker.*`) for presence-based automations — person entities aggregate all trackers and are more reliable for zone triggers.
+
+## Zone Notes
+
+- `zone.close_garage` — 200m radius, kept `passive: true`. Passive zones don't show in the Who's Home display and don't compete with the built-in `home` zone. The garage-close automation triggers on `person → not_home` (home zone departure) instead, so this zone is no longer needed for triggers — kept for potential future condition use.
+- `zone.near_home` — 250m radius, used to trigger garage open and alarm disarm on arrival.
+
+## What's Next
+
+- [ ] HA companion app on iPhone + Android (use hass.deevana.uk)
+- [ ] Build Lovelace dashboard (security bar + 6 tabs)
+- [ ] Set up 7 v1 automations
+- [ ] Revisit Honeywell TCC thermostat integration
+- [ ] GitHub private repo for config backup

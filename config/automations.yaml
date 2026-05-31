@@ -1,6 +1,6 @@
 - id: leave_for_work_close_garage
   alias: "Leave for Work — Close Garages"
-  description: "When both Deepak and Bunny are away, close both garage doors"
+  description: "When either person leaves home, close both garage doors if open"
   trigger:
     - platform: state
       entity_id: person.deepak_aryan
@@ -10,15 +10,7 @@
       entity_id: person.bunny
       from: "home"
       to: "not_home"
-  condition:
-    - condition: not
-      conditions:
-        - condition: state
-          entity_id: person.deepak_aryan
-          state: "home"
-        - condition: state
-          entity_id: person.bunny
-          state: "home"
+  condition: []
   action:
     - action: cover.close_cover
       target:
@@ -37,12 +29,11 @@
 
 - id: arriving_home_open_garage_deepak
   alias: "Arriving Home — Open Garage (Deepak)"
-  description: "When Deepak enters the near-home zone, open the double garage"
+  description: "When Deepak arrives home, open the double garage"
   trigger:
-    - platform: zone
+    - platform: state
       entity_id: person.deepak_aryan
-      zone: zone.near_home
-      event: enter
+      to: "home"
   condition: []
   action:
     - action: cover.open_cover
@@ -54,33 +45,14 @@
         message: "Double garage opening — almost there!"
   mode: single
 
-- id: arriving_home_open_garage_bunny
-  alias: "Arriving Home — Open Garage (Bunny)"
-  description: "When Bunny enters the near-home zone, open the single garage"
-  trigger:
-    - platform: zone
-      entity_id: person.bunny
-      zone: zone.near_home
-      event: enter
-  condition: []
-  action:
-    - action: cover.open_cover
-      target:
-        entity_id: cover.single
-    - action: notify.mobile_app_bunny
-      data:
-        title: "Welcome Home"
-        message: "Gym garage opening — almost there!"
-  mode: single
 
 - id: arriving_home_close_garage_deepak
   alias: "Arriving Home — Close Garage After 5 Min (Deepak)"
-  description: "When Deepak enters the home zone, close the double garage after 5 minutes"
+  description: "When Deepak arrives home, close the double garage after 5 minutes if open"
   trigger:
-    - platform: zone
+    - platform: state
       entity_id: person.deepak_aryan
-      zone: zone.home
-      event: enter
+      to: "home"
   condition:
     - condition: state
       entity_id: cover.double
@@ -97,29 +69,47 @@
         message: "Double garage closed 5 minutes after you arrived home."
   mode: single
 
+- id: arriving_home_open_garage_bunny
+  alias: "Arriving Home — Open Garage (Bunny)"
+  description: "When Bunny arrives home, open the double garage"
+  trigger:
+    - platform: state
+      entity_id: person.bunny
+      to: "home"
+  condition: []
+  action:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.double
+    - action: notify.mobile_app_bunny
+      data:
+        title: "Welcome Home"
+        message: "Double garage opening — almost there!"
+  mode: single
+
 - id: arriving_home_close_garage_bunny
   alias: "Arriving Home — Close Garage After 5 Min (Bunny)"
-  description: "When Bunny enters the home zone, close the single garage after 5 minutes"
+  description: "When Bunny arrives home, close the double garage after 5 minutes if open"
   trigger:
-    - platform: zone
+    - platform: state
       entity_id: person.bunny
-      zone: zone.home
-      event: enter
+      to: "home"
   condition:
     - condition: state
-      entity_id: cover.single
+      entity_id: cover.double
       state: "open"
   action:
     - delay:
         minutes: 5
     - action: cover.close_cover
       target:
-        entity_id: cover.single
+        entity_id: cover.double
     - action: notify.mobile_app_bunny
       data:
         title: "Garage Closed"
-        message: "Gym garage closed 5 minutes after you arrived home."
+        message: "Double garage closed 5 minutes after you arrived home."
   mode: single
+
 
 - id: garage_open_too_long
   alias: "Garage Open > 10 Minutes"
@@ -335,16 +325,14 @@
 
 - id: arriving_home_disarm_alarm
   alias: "Arriving Home — Disarm Alarm"
-  description: "Disarm alarm when Deepak or Bunny enters the near-home zone"
+  description: "Disarm alarm when Deepak or Bunny arrives home"
   trigger:
-    - platform: zone
+    - platform: state
       entity_id: person.deepak_aryan
-      zone: zone.near_home
-      event: enter
-    - platform: zone
+      to: "home"
+    - platform: state
       entity_id: person.bunny
-      zone: zone.near_home
-      event: enter
+      to: "home"
   condition:
     - condition: state
       entity_id: alarm_control_panel.deevana2_alarm

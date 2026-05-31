@@ -3,3 +3,10 @@
   longitude: -112.0379
   radius: 250
   icon: mdi:home-import-outline
+  passive: true
+
+- name: Close Garage
+  latitude: 40.5273
+  longitude: -112.0381
+  radius: 200
+  passive: true

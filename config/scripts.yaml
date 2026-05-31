@@ -3,16 +3,16 @@ goodnight:
   sequence:
     - action: lock.lock
       target:
-        entity_id: lock.front_door
+        entity_id: lock.main_door
     - action: cover.close_cover
       target:
-        entity_id: cover.double_car_garage_door
+        entity_id: cover.double
     - action: cover.close_cover
       target:
-        entity_id: cover.single_car_garage_door
+        entity_id: cover.single
     - action: alarm_control_panel.alarm_arm_home
       target:
-        entity_id: alarm_control_panel.ring_alarm
+        entity_id: alarm_control_panel.deevana2_alarm
   mode: single
 
 good_morning:
@@ -20,10 +20,10 @@ good_morning:
   sequence:
     - action: alarm_control_panel.alarm_disarm
       target:
-        entity_id: alarm_control_panel.ring_alarm
+        entity_id: alarm_control_panel.deevana2_alarm
     - action: lock.unlock
       target:
-        entity_id: lock.front_door
+        entity_id: lock.main_door
   mode: single
 
 leave_home:
@@ -31,16 +31,16 @@ leave_home:
   sequence:
     - action: cover.close_cover
       target:
-        entity_id: cover.double_car_garage_door
+        entity_id: cover.double
     - action: cover.close_cover
       target:
-        entity_id: cover.single_car_garage_door
+        entity_id: cover.single
     - action: lock.lock
       target:
-        entity_id: lock.front_door
+        entity_id: lock.main_door
     - action: alarm_control_panel.alarm_arm_away
       target:
-        entity_id: alarm_control_panel.ring_alarm
+        entity_id: alarm_control_panel.deevana2_alarm
   mode: single
 
 leave_home_resident_staying:
@@ -48,16 +48,16 @@ leave_home_resident_staying:
   sequence:
     - action: cover.close_cover
       target:
-        entity_id: cover.double_car_garage_door
+        entity_id: cover.double
     - action: cover.close_cover
       target:
-        entity_id: cover.single_car_garage_door
+        entity_id: cover.single
     - action: lock.lock
       target:
-        entity_id: lock.front_door
+        entity_id: lock.main_door
     - action: alarm_control_panel.alarm_arm_home
       target:
-        entity_id: alarm_control_panel.ring_alarm
+        entity_id: alarm_control_panel.deevana2_alarm
   mode: single
 
 arrive_home:
@@ -65,10 +65,10 @@ arrive_home:
   sequence:
     - action: alarm_control_panel.alarm_disarm
       target:
-        entity_id: alarm_control_panel.ring_alarm
+        entity_id: alarm_control_panel.deevana2_alarm
     - action: cover.open_cover
       target:
-        entity_id: cover.double_car_garage_door
+        entity_id: cover.double
   mode: single
 
 close_all_garages:
@@ -76,10 +76,10 @@ close_all_garages:
   sequence:
     - action: cover.close_cover
       target:
-        entity_id: cover.double_car_garage_door
+        entity_id: cover.double
     - action: cover.close_cover
       target:
-        entity_id: cover.single_car_garage_door
+        entity_id: cover.single
   mode: single
 
 lock_up:
@@ -87,8 +87,8 @@ lock_up:
   sequence:
     - action: lock.lock
       target:
-        entity_id: lock.front_door
+        entity_id: lock.main_door
     - action: alarm_control_panel.alarm_arm_home
       target:
-        entity_id: alarm_control_panel.ring_alarm
+        entity_id: alarm_control_panel.deevana2_alarm
   mode: single
