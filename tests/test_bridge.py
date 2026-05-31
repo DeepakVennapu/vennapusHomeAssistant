@@ -72,3 +72,7 @@ def test_health_endpoint(client):
     resp = client.get("/health")
     assert resp.status_code == 200
     assert resp.get_json()["status"] == "ok"
+
+def test_tesla_battery_entity_in_key_entities():
+    from ha_bridge import _KEY_ENTITIES, TESLA_BATTERY_LEVEL
+    assert TESLA_BATTERY_LEVEL in _KEY_ENTITIES

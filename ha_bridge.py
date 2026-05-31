@@ -6,10 +6,22 @@ from collections import deque
 
 from google import genai
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 
 from ha_client import HAClient
 from intent_engine import IntentEngine
+
+# Tesla Fleet entity IDs for Hermoine's Den
+TESLA_BATTERY_LEVEL = "sensor.hermoine_s_den_battery_level"
+TESLA_BATTERY_RANGE = "sensor.hermoine_s_den_battery_range"
+TESLA_DOOR_LOCK = "lock.hermoine_s_den_lock"
+TESLA_CLIMATE = "climate.hermoine_s_den_climate"
+TESLA_CHARGING_STATE = "sensor.hermoine_s_den_charging"
+TESLA_CHARGE_RATE = "sensor.hermoine_s_den_charge_rate"
+TESLA_TIME_TO_FULL = "sensor.hermoine_s_den_time_to_full_charge"
+TESLA_CHARGE_CABLE = "binary_sensor.hermoine_s_den_charge_cable"
+TESLA_LOCATION = "device_tracker.hermoine_s_den_location"
+TESLA_CHARGER_SWITCH = "switch.hermoine_s_den_charge"
 
 load_dotenv()
 
@@ -35,6 +47,11 @@ _KEY_ENTITIES = [
     "binary_sensor.garage_door",
     "binary_sensor.front_door",
     "binary_sensor.backyard_door",
+    TESLA_BATTERY_LEVEL,
+    TESLA_BATTERY_RANGE,
+    TESLA_DOOR_LOCK,
+    TESLA_CHARGE_CABLE,
+    TESLA_CHARGING_STATE,
 ]
 
 
@@ -127,6 +144,18 @@ Only include JSON lines for actions to execute. Speak naturally for everything e
     clean = "\n".join(clean_lines).strip()
     executed = _execute_claude_actions(actions)
     return clean or output, executed
+
+
+_TESLA_PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEMqlIjU/9Kac1Fd+Z2PZ0FWR4a3MO
+Duh6MMzVT/5Su2y0rDrr897ajOjBzpjmwtLC4TjOZ0wVc2UNsjA9Ph+nqA==
+-----END PUBLIC KEY-----
+"""
+
+
+@app.route("/.well-known/appspecific/com.tesla.3p.public-key.pem")
+def tesla_public_key():
+    return Response(_TESLA_PUBLIC_KEY, mimetype="application/x-pem-file")
 
 
 @app.route("/health")

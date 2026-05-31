@@ -46,29 +46,6 @@
   mode: single
 
 
-- id: arriving_home_close_garage_deepak
-  alias: "Arriving Home — Close Garage After 5 Min (Deepak)"
-  description: "When Deepak arrives home, close the double garage after 5 minutes if open"
-  trigger:
-    - platform: state
-      entity_id: person.deepak_aryan
-      to: "home"
-  condition:
-    - condition: state
-      entity_id: cover.double
-      state: "open"
-  action:
-    - delay:
-        minutes: 5
-    - action: cover.close_cover
-      target:
-        entity_id: cover.double
-    - action: notify.mobile_app_deepak
-      data:
-        title: "Garage Closed"
-        message: "Double garage closed 5 minutes after you arrived home."
-  mode: single
-
 - id: arriving_home_open_garage_bunny
   alias: "Arriving Home — Open Garage (Bunny)"
   description: "When Bunny arrives home, open the double garage"
@@ -87,29 +64,32 @@
         message: "Double garage opening — almost there!"
   mode: single
 
-- id: arriving_home_close_garage_bunny
-  alias: "Arriving Home — Close Garage After 5 Min (Bunny)"
-  description: "When Bunny arrives home, close the double garage after 5 minutes if open"
+- id: garage_auto_close_5min
+  alias: "Garage Auto-Close After 5 Minutes"
+  description: "Close any garage door that has been open for 5 minutes"
   trigger:
     - platform: state
-      entity_id: person.bunny
-      to: "home"
-  condition:
-    - condition: state
-      entity_id: cover.double
-      state: "open"
-  action:
-    - delay:
+      entity_id:
+        - cover.double
+        - cover.single
+      to: "open"
+      for:
         minutes: 5
+  condition: []
+  action:
     - action: cover.close_cover
       target:
-        entity_id: cover.double
+        entity_id: "{{ trigger.entity_id }}"
+    - action: notify.mobile_app_deepak
+      data:
+        title: "Garage Auto-Closed"
+        message: "{{ trigger.to_state.attributes.friendly_name }} was open for 5 minutes and has been closed."
     - action: notify.mobile_app_bunny
       data:
-        title: "Garage Closed"
-        message: "Double garage closed 5 minutes after you arrived home."
-  mode: single
-
+        title: "Garage Auto-Closed"
+        message: "{{ trigger.to_state.attributes.friendly_name }} was open for 5 minutes and has been closed."
+  mode: parallel
+  max: 2
 
 - id: garage_open_too_long
   alias: "Garage Open > 10 Minutes"

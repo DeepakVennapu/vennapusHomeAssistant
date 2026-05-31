@@ -10,8 +10,9 @@ All automations are defined in `config/automations.yaml`. Scripts in `config/scr
 |----------|---------|--------------|
 | Deepak leaves | `person.deepak_aryan` → `not_home` | Both garages close, both notified |
 | Bunny leaves | `person.bunny` → `not_home` | Both garages close, both notified |
-| Deepak arrives | `person.deepak_aryan` → `home` | Double garage opens, Deepak notified. Closes after 5 min |
-| Bunny arrives | `person.bunny` → `home` | Double garage opens, Bunny notified. Closes after 5 min |
+| Deepak arrives | `person.deepak_aryan` → `home` | Double garage opens, Deepak notified |
+| Bunny arrives | `person.bunny` → `home` | Double garage opens, Bunny notified |
+| Either garage open 5+ min | State timer | Auto-closes, both notified |
 | Either garage open 10+ min | State timer | Both notified, repeats every 10 min until closed |
 | Midnight check | 00:00 daily | Both notified if either garage still open |
 | Single garage | — | Never opens automatically — manual only |
@@ -29,8 +30,6 @@ All automations are defined in `config/automations.yaml`. Scripts in `config/scr
 | `last_person_leaves_arm_away` | Either person → `not_home` | Both are `not_home` | Lock front door + arm away + notify both |
 | `arriving_home_open_garage_deepak` | `person.deepak_aryan` → `home` | — | Open double garage + notify Deepak |
 | `arriving_home_open_garage_bunny` | `person.bunny` → `home` | — | Open double garage + notify Bunny |
-| `arriving_home_close_garage_deepak` | `person.deepak_aryan` → `home` | Double garage is open | Close double garage after 5 min |
-| `arriving_home_close_garage_bunny` | `person.bunny` → `home` | Double garage is open | Close double garage after 5 min |
 | `arriving_home_disarm_alarm` | Either person → `home` | Alarm is `armed_away` | Disarm alarm |
 
 ---
@@ -43,6 +42,7 @@ All automations are defined in `config/automations.yaml`. Scripts in `config/scr
 | `flood_freeze_alert` | Any flood/freeze sensor → `on` | — | Critical push to both |
 | `night_motion_alert` | Any motion sensor → `on` | 10pm–6am + alarm `armed_home` | Push with sensor name + time |
 | `front_door_unlocked_too_long` | `lock.main_door` unlocked for 10 min | — | Push to both |
+| `garage_auto_close_5min` | Either garage open for 5 min | — | Auto-close + push to both |
 | `garage_open_too_long` | Either garage open for 10 min | — | Push to both, repeats every 10 min |
 | `door_window_open_too_long` | Any contact sensor open for 10 min | — | Push to both |
 
