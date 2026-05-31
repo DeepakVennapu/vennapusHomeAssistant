@@ -177,3 +177,55 @@ def test_tier3_close_both_garages_in_5_mins(engine, mock_client):
     assert result.tier == 3
     assert "schedul" in result.response.lower() or "5 min" in result.response.lower()
     mock_timer.assert_called_once()
+
+# --- Tesla Tier 1 tests ---
+
+TESLA_LOCK_ID = "lock.hermoine_s_den_lock"
+TESLA_CLIMATE_ID = "climate.hermoine_s_den_climate"
+TESLA_CHARGER_ID = "switch.hermoine_s_den_charge"
+
+def test_tier1_tesla_lock_car(engine, mock_client):
+    result = engine.classify("lock my car")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("lock", "lock", TESLA_LOCK_ID)
+
+def test_tier1_tesla_lock_tesla(engine, mock_client):
+    result = engine.classify("lock the Tesla")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("lock", "lock", TESLA_LOCK_ID)
+
+def test_tier1_tesla_unlock_car(engine, mock_client):
+    result = engine.classify("unlock my car")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("lock", "unlock", TESLA_LOCK_ID)
+
+def test_tier1_tesla_start_climate(engine, mock_client):
+    result = engine.classify("warm up the car")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("climate", "turn_on", TESLA_CLIMATE_ID)
+
+def test_tier1_tesla_start_climate_cool(engine, mock_client):
+    result = engine.classify("cool down the car")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("climate", "turn_on", TESLA_CLIMATE_ID)
+
+def test_tier1_tesla_stop_climate(engine, mock_client):
+    result = engine.classify("turn off the climate")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("climate", "turn_off", TESLA_CLIMATE_ID)
+
+def test_tier1_tesla_start_charging(engine, mock_client):
+    result = engine.classify("start charging the car")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("switch", "turn_on", TESLA_CHARGER_ID)
+
+def test_tier1_tesla_stop_charging(engine, mock_client):
+    result = engine.classify("stop charging the Tesla")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("switch", "turn_off", TESLA_CHARGER_ID)
+
+def test_tier1_tesla_lock_does_not_match_front_door(engine, mock_client):
+    """'lock the door' must still hit main_door, not Tesla."""
+    result = engine.classify("lock the door")
+    assert result.tier == 1
+    mock_client.call_service.assert_called_once_with("lock", "lock", "lock.main_door")

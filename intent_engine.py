@@ -22,6 +22,14 @@ class IntentResult:
 # payload for service: (domain, service, entity_id)
 # payload for script: script_id
 _TIER1_RULES = [
+    # Tesla — commands (BEFORE generic lock so "lock my car" doesn't hit main_door)
+    (r"\b(lock|secure)\b.*(my\s+)?(car|tesla)\b", "service", ("lock", "lock", "lock.hermoine_s_den_lock")),
+    (r"\bunlock\b.*(my\s+)?(car|tesla)\b", "service", ("lock", "unlock", "lock.hermoine_s_den_lock")),
+    (r"\b(start|turn\s+on)\b.*(climate|heat|ac)\b|\bwarm\s+up\b.*(the\s+)?(car|tesla)\b|\bcool\s+down\b.*(the\s+)?(car|tesla)\b", "service", ("climate", "turn_on", "climate.hermoine_s_den_climate")),
+    (r"\b(stop|turn\s+off)\b.*(climate|heat|ac)\b", "service", ("climate", "turn_off", "climate.hermoine_s_den_climate")),
+    (r"\bstart\s+charg(e|ing)\b.*(the\s+)?(car|tesla)\b", "service", ("switch", "turn_on", "switch.hermoine_s_den_charge")),
+    (r"\bstop\s+charg(e|ing)\b.*(the\s+)?(car|tesla)\b", "service", ("switch", "turn_off", "switch.hermoine_s_den_charge")),
+
     # Lock / unlock
     (r"\b(lock\s*up|secure\s+the\s+house)\b", "script", "script.lock_up"),
     (r"\b(lock|secure)\b.*(door|front)", "service", ("lock", "lock", "lock.main_door")),
@@ -50,6 +58,10 @@ _TIER1_RULES = [
     (r"\bgood\s*morning\b", "script", "script.good_morning"),
     (r"\b(i.?m\s+leaving|i\s+am\s+leaving|leaving\s+home|leaving\s+now)\b", "script", "script.leave_home"),
     (r"\b(arrive|arriving|i.?m\s+home|i\s+am\s+home)\b(?!.*in\s+\d)", "script", "script.arrive_home"),
+
+    # Tesla scripts
+    (r"\b(prepare|get)\b.*(my\s+)?(car|tesla)\b.*\bready\b|\bprepare\s+my\s+car\b", "script", "script.tesla_leave_prep"),
+    (r"\btesla\s+goodnight\b", "script", "script.tesla_goodnight"),
 ]
 
 _TIER2_RULES = [
@@ -143,6 +155,10 @@ class IntentEngine:
             ("alarm_control_panel", "alarm_arm_away"): "Alarm armed (away).",
             ("alarm_control_panel", "alarm_disarm"): "Alarm disarmed.",
             ("input_boolean", "turn_on"): "Rain delay enabled.",
+            ("climate", "turn_on"): "Tesla climate started — car will be ready shortly.",
+            ("climate", "turn_off"): "Tesla climate off.",
+            ("switch", "turn_on"): "Tesla charging started.",
+            ("switch", "turn_off"): "Tesla charging stopped.",
         }
         return action_map.get((domain, service), "Done.")
 
@@ -155,6 +171,8 @@ class IntentEngine:
             "script.arrive_home": "Welcome home! Opening the garage.",
             "script.close_all_garages": "Closing both garages.",
             "script.lock_up": "Locking up and arming home mode.",
+            "script.tesla_leave_prep": "Tesla climate started and car is locked.",
+            "script.tesla_goodnight": "Tesla locked for the night.",
         }.get(script_id, "Done.")
 
     # --- Tier 2 ---
