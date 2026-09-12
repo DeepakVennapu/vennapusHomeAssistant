@@ -78,7 +78,12 @@ sudo cloudflared service status
 sudo cloudflared service log
 ```
 
-Tunnel routes `hass.deevana.uk` → `http://localhost:8123`
+Two routes are configured for `hass.deevana.uk` (order matters — Cloudflare evaluates top-down):
+
+| # | Path | Service | Purpose |
+|---|------|---------|---------|
+| 1 | `.well-known` | `localhost:8124` | Tesla Fleet API public key endpoint |
+| 2 | `*` | `localhost:8123` | Home Assistant UI |
 
 The `configuration.yaml` includes trusted proxy settings required for the tunnel to work:
 ```yaml
@@ -87,8 +92,11 @@ http:
   trusted_proxies:
     - 127.0.0.1
     - ::1
-    - 192.168.65.1   # Docker internal gateway
+    - 192.168.65.1   # Docker Desktop VM gateway (local access)
+    - 172.19.0.1     # ha_net bridge gateway (Cloudflare tunnel traffic)
 ```
+
+**Important:** `172.19.0.1` is the gateway of the `ha_net` Docker bridge network. The subnet is pinned in `docker-compose.yml` to `172.19.0.0/16` so this IP stays stable across restarts. Without the pinned subnet, Docker can reassign a different gateway on restart, breaking the tunnel with a `400 Bad Request`.
 
 ## Confirmed Entity IDs
 
