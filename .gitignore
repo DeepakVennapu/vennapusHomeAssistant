@@ -32,3 +32,4 @@ mosquitto/log/
 
 # ring-mqtt runtime
 ring-mqtt/
+.DS_Store
