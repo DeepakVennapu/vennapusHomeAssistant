@@ -35,6 +35,29 @@ You / Partner
 | B-Hyve sprinklers (8 zones) | bhyve | HACS |
 | Honeywell FocusPRO S200 thermostat | — | Parked |
 
+## Setup on a new machine
+
+Prereqs: Docker Desktop (macOS/Linux), `cloudflared` installed as a system service, HACS already installed inside HA (automatic once HA is running — see HACS docs for first-run).
+
+```bash
+# 1. Clone + fill env
+git clone git@github.com:DeepakVennapu/vennapusHomeAssistant.git homeassistant
+cd homeassistant
+cp .env.example .env
+# Edit .env — fill HA_TOKEN (generate at HA → Profile → Long-Lived Access Tokens),
+# MQTT_PASSWORD (match mosquitto/config/passwd), GEMINI_API_KEY, Tesla Fleet creds.
+
+# 2. Start the stack
+docker compose up -d
+
+# 3. First-time HACS components to install from inside HA → HACS tab:
+#    - bhyve (B-Hyve sprinklers)
+#    - kwikset-ha (explosivo22/kwikset-ha)
+#    tesla_custom, hacs, ha_claude are version-pinned in this repo and auto-load.
+```
+
+Confirm HA is up: open http://localhost:8123 (local) or https://hass.deevana.uk (remote via Cloudflare).
+
 ## Quick Start
 
 ```bash
