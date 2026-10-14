@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "names": [
+        "Alex",
+        "I",
+        "me"
+      ],
+      "ha_entity": "person.alex",
+      "role": "owner"
+    },
+    {
+      "names": [
+        "Sam",
+        "my partner"
+      ],
+      "ha_entity": "person.sam",
+      "role": "resident",
+      "note": "Example entry \u2014 copy to people.json and edit"
+    }
+  ]
+}

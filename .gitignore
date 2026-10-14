@@ -33,3 +33,9 @@ mosquitto/log/
 # ring-mqtt runtime
 ring-mqtt/
 .DS_Store
+
+# Personal data and secrets — never commit
+people.json
+config/*.key
+*.key
+*.pem
