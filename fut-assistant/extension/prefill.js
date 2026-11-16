@@ -125,8 +125,10 @@
     return missing();
   }
 
+  const cooldownLeft = () => Math.max(0, lastFill + COOLDOWN_MS - Date.now());
+
   async function run(text, onStatus = () => {}) {
-    const wait = lastFill + COOLDOWN_MS - Date.now();
+    const wait = cooldownLeft();
     if (wait > 0) throw new Error(`Please wait ${Math.ceil(wait / 1000)}s before the next pre-fill.`);
     const code = parseCode(text);
     const challenge = findOpenChallenge();
@@ -159,5 +161,5 @@
       'If the screen did not update, go back and reopen the SBC.';
   }
 
-  window.__futAssistantPrefill = { run, parseCode, placeCards, findOpenChallenge, COOLDOWN_MS };
+  window.__futAssistantPrefill = { run, parseCode, placeCards, findOpenChallenge, cooldownLeft, COOLDOWN_MS };
 })();

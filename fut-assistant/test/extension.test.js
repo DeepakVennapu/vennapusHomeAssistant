@@ -14,6 +14,8 @@ try { ({ chromium } = createRequire(import.meta.url)('playwright')); } catch { /
 
 const script = fileURLToPath(new URL('../extension/club-export.js', import.meta.url));
 const prefillScript = fileURLToPath(new URL('../extension/prefill.js', import.meta.url));
+const bundleScript = fileURLToPath(new URL('../extension/solver-bundle.js', import.meta.url));
+const oneClickScript = fileURLToPath(new URL('../extension/one-click.js', import.meta.url));
 const readerScript = fileURLToPath(new URL('../extension/sbc-reader.js', import.meta.url));
 
 // Builds a fake Web App: 120 club players over two pages, 3 storage cards, one loan, one Icon.
@@ -52,7 +54,7 @@ test('extension exports a club the solver can use, using read calls only', { ski
 
     const [download] = await Promise.all([
       page.waitForEvent('download', { timeout: 30000 }),
-      page.locator('#fut-assistant-export #export').click(),
+      page.locator('#fut-assistant-export summary').click().then(() => page.locator('#fut-assistant-export #export').click()),
     ]);
     const data = JSON.parse(readFileSync(await download.path(), 'utf8'));
     const calls = await page.evaluate(() => window.__calls);
@@ -119,6 +121,7 @@ test('pre-fill places the chosen cards in position, saves the draft, never submi
     const code = JSON.stringify({ kind: 'fut-assistant-prefill', v: 1, sbc: 'Test',
       cards: [...ids.map((id) => ({ id: String(id), name: `P${id}` })), { buy: true, name: 'Any 84 gold (buy)', rating: 84 }] });
 
+    await page.locator('#fut-assistant-export summary').click();
     await page.locator('#fut-assistant-export #code').fill(code);
     await page.locator('#fut-assistant-export #prefill').click();
     const status = page.locator('#fut-assistant-export #prefillStatus');
@@ -220,6 +223,7 @@ test('reads the open SBC requirements and the solver can use them', { skip: !chr
     ]);
 
     // The panel button reports what it copied.
+    await page.locator('#fut-assistant-export summary').click();
     await page.locator('#fut-assistant-export #readSbc').click();
     await page.locator('#fut-assistant-export #readStatus').filter({ hasText: /Copied|Stopped/ }).waitFor();
     assert.match(await page.locator('#fut-assistant-export #readStatus').textContent(),
@@ -229,6 +233,66 @@ test('reads the open SBC requirements and the solver can use them', { skip: !chr
     const res = solve(normalizeClub(exported), sbc);
     assert.equal(res.feasible, true, JSON.stringify(res.evaluation.results));
     assert.ok(res.evaluation.results.find((r) => r.kind === 'unsupported').unchecked);
+  } finally {
+    await browser.close();
+  }
+});
+
+async function loadAll(page, { requirements = true } = {}) {
+  await page.setContent('<!doctype html><html><body></body></html>');
+  await page.evaluate(mockWebApp);
+  await page.evaluate(mockOpenSbc);
+  if (requirements) await page.evaluate(mockRequirements);
+  for (const f of [bundleScript, script, prefillScript, readerScript, oneClickScript]) {
+    await page.addScriptTag({ content: readFileSync(f, 'utf8') });
+  }
+}
+
+test('one click: reads the SBC, solves with the club, places one squad, never submits', { skip: !chromium && 'playwright not installed', timeout: 90000 }, async () => {
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage();
+    await loadAll(page);
+    const status = page.locator('#fut-assistant-export #oneClickStatus');
+    await page.locator('#fut-assistant-export #oneClick').click();
+    await status.filter({ hasText: /Placed|Stopped/ }).waitFor({ timeout: 60000 });
+    const text = await status.textContent();
+    assert.match(text, /^Placed 11 cards · rating \d+ · chemistry \d+/);
+    assert.match(text, /⚠ Check yourself: .*Not understood: FIRST_OWNER_PLAYERS_COUNT/);
+    assert.match(text, /about \d+\+? more time/);
+    assert.match(text, /submit it yourself/);
+
+    const placed = await page.evaluate(() => window.__placed);
+    assert.equal(placed.filter(Boolean).length, 11);
+    assert.equal(await page.evaluate(() => window.__saved), 1);
+    assert.equal(await page.evaluate(() => window.__submitted), 0);
+    // Club read once (storage + 2 pages); pre-fill found everything in that read.
+    assert.deepEqual(await page.evaluate(() => window.__calls), ['storage', 'search:0', 'search:91']);
+
+    // Straight away again: blocked by the 30 s wait, before any reading or solving.
+    await page.locator('#fut-assistant-export #oneClick').click();
+    await status.filter({ hasText: /Please wait/ }).waitFor({ timeout: 5000 });
+    assert.equal(await page.evaluate(() => window.__saved), 1);
+  } finally {
+    await browser.close();
+  }
+});
+
+test('one click: refuses to fill when the club cannot meet the SBC', { skip: !chromium && 'playwright not installed', timeout: 90000 }, async () => {
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage();
+    await loadAll(page);
+    await page.evaluate(() => {
+      const c = window.getAppMain().getRootViewController().getPresentedViewController()
+        .getCurrentViewController().getCurrentController()._view.deep.holder.challenge;
+      c.eligibilityRequirements = [{ scope: 0, count: -1, kvPairs: { _collection: { 2: [95] } } }];
+    });
+    await page.locator('#fut-assistant-export #oneClick').click();
+    const status = page.locator('#fut-assistant-export #oneClickStatus');
+    await status.filter({ hasText: /Placed|Stopped/ }).waitFor({ timeout: 60000 });
+    assert.match(await status.textContent(), /Stopped: Can't complete this with your club\. Team rating: Min 95 \(best: \d+\)/);
+    assert.equal(await page.evaluate(() => window.__saved), 0);
   } finally {
     await browser.close();
   }

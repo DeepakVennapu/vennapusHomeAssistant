@@ -27,7 +27,16 @@
 
   // Every card the extension has read this session, by card id, so pre-fill can reuse them.
   const itemCache = new Map();
-  const remember = (items) => { for (const i of items) if (i?.id != null) itemCache.set(String(i.id), i); };
+  const storageIds = new Set();
+  // clubComplete: the whole club has been read this session (not just enough for a pre-fill).
+  const clubState = { clubComplete: false, storageRead: false };
+  const remember = (items, fromStorage = false) => {
+    for (const i of items) {
+      if (i?.id == null) continue;
+      itemCache.set(String(i.id), i);
+      if (fromStorage) storageIds.add(String(i.id));
+    }
+  };
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const pause = () => sleep(PAUSE_MS[0] + Math.random() * (PAUSE_MS[1] - PAUSE_MS[0]));
@@ -80,8 +89,9 @@
       all.push(...items);
       remember(items);
       onProgress(`Reading club… ${all.length} cards`);
-      const done = items.length < PAGE_SIZE || res?.response?.retrievedAll === true || Boolean(until?.());
-      if (done) break;
+      const exhausted = items.length < PAGE_SIZE || res?.response?.retrievedAll === true;
+      if (exhausted) { clubState.clubComplete = true; break; }
+      if (until?.()) break;
       await pause();
     }
     return all;
@@ -92,7 +102,9 @@
     if (!svc?.requestStorageItems) return { items: [], note: 'SBC storage not available in this Web App version' };
     const res = await observe(svc.requestStorageItems(), 'SBC storage');
     const items = res?.response?.items ?? res?.data?.items ?? [];
-    remember(items);
+    storageIds.clear();
+    remember(items, true);
+    clubState.storageRead = true;
     return { items };
   }
 
@@ -229,10 +241,21 @@
         textarea { width: 100%; box-sizing: border-box; height: 54px; margin-bottom: 6px; background: #0f1115; color: #e6e8ec;
           border: 1px solid #2a2f39; border-radius: 6px; font: 11px ui-monospace, monospace; resize: vertical; }
         .secondary { background: #2b3240; }
+        .opts { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; font-size: 12px; color: #9aa3af; }
+        .opts input { width: 46px; background: #0f1115; color: #e6e8ec; border: 1px solid #2a2f39; border-radius: 4px; padding: 2px 4px; }
+        .link { background: none; color: #9aa3af; text-decoration: underline; padding: 0; width: auto; margin-top: 6px; font-size: 12px; }
+        details { margin-top: 8px; } summary { cursor: pointer; color: #9aa3af; font-size: 12px; }
       </style>
       <div class="box">
         <span class="x" title="Hide">✕</span>
         <div class="title">FUT Assistant</div>
+        <label class="opts">Keep cards rated <input id="protect" type="number" min="50" max="99" value="87"> and up</label>
+        <button id="oneClick">Solve &amp; pre-fill</button>
+        <div class="status" id="oneClickStatus">Open an SBC, then click. You check and submit yourself.</div>
+        <button id="refreshClub" class="link">Re-read my club</button>
+        <details>
+        <summary>More tools</summary>
+        <hr>
         <button id="export">Export club (read-only)</button>
         <div class="status" id="exportStatus">Reads your club and SBC storage, then saves a file.</div>
         <hr>
@@ -242,7 +265,32 @@
         <textarea id="code" placeholder="Paste a pre-fill code from FUT Assistant" spellcheck="false"></textarea>
         <button id="prefill" class="secondary">Pre-fill open SBC</button>
         <div class="status" id="prefillStatus">Open the SBC's squad screen first. You check and submit yourself.</div>
+        </details>
       </div>`;
+
+    // One click: read the open SBC, solve with your club, place the squad. Never submits.
+    const oneStatus = root.getElementById('oneClickStatus');
+    const runOneClick = async (refresh) => {
+      if (busy) return;
+      const oc = window.__futAssistantOneClick;
+      if (!oc) { oneStatus.textContent = 'Solver scripts did not load.'; return; }
+      if (!webAppReady()) { oneStatus.textContent = 'Log in and wait for the Web App to finish loading.'; return; }
+      busy = true;
+      root.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+      try {
+        const set = (t) => { oneStatus.textContent = t; };
+        oneStatus.textContent = refresh
+          ? await oc.refreshClub(set)
+          : await oc.solveAndFill({ protectMinRating: Number(root.getElementById('protect').value) || 87 }, set);
+      } catch (e) {
+        oneStatus.textContent = `Stopped: ${e.message}`;
+      } finally {
+        busy = false;
+        root.querySelectorAll('button').forEach((b) => { b.disabled = false; });
+      }
+    };
+    root.getElementById('oneClick').addEventListener('click', () => runOneClick(false));
+    root.getElementById('refreshClub').addEventListener('click', () => runOneClick(true));
     const btn = root.getElementById('export');
     const status = root.getElementById('exportStatus');
     root.querySelector('.x').addEventListener('click', () => host.remove());
@@ -312,7 +360,7 @@
   // Exposed for testing and for a manual run from the console.
   window.__futAssistantExport = {
     buildExport, toCard, position, readClubPlayers, readStorage, mountPanel, observe, tryCall, firstDefined,
-    pause, itemCache, VERSION,
+    pause, itemCache, storageIds, clubState, VERSION,
   };
 
   if (document.body) mountPanel();

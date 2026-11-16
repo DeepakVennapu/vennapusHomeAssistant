@@ -23,6 +23,28 @@ node src/cli.js repeat rated-84 --market
 node src/cli.js solve rated-84 --club my-club.json --protect 86
 ```
 
+## One click: Solve & pre-fill (Chrome extension)
+
+Open an SBC in the Web App and press **Solve & pre-fill** in the FUT Assistant panel.
+
+1. It reads the SBC's requirements from the page, with no network call.
+2. It uses your club. The first click each session reads your club and storage at the paced speed;
+   later clicks reuse that read.
+3. It solves on your computer with the same solver as the local page (bundled into
+   `extension/solver-bundle.js`).
+4. It places that one squad and saves the draft once. **It never submits.** It fills one squad per
+   click, waits 30 seconds between fills, and won't fill a squad that doesn't meet the requirements.
+
+The status line shows rating, chemistry, card value, anything you need to check yourself (⚠), and
+roughly how many more times your club can do the same SBC.
+
+- Cards from an earlier fill this session are left out of the next one, on the assumption you
+  submitted it. Use **Re-read my club** if you didn't, or after opening packs.
+- "Keep cards rated … and up" protects your best cards (default 87).
+- The step-by-step tools from below are under **More tools**.
+
+After changing anything in `src/`, run `npm run build` to refresh the bundle. A test fails if you forget.
+
 ## Import your club (Chrome extension)
 
 `extension/` is a read-only Chrome extension. It adds a small **FUT Assistant** panel to EA's
