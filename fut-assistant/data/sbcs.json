@@ -1,0 +1,59 @@
+[
+  {
+    "id": "rated-83",
+    "name": "83-Rated Squad",
+    "requirements": [{ "kind": "teamRating", "min": 83 }]
+  },
+  {
+    "id": "rated-84",
+    "name": "84-Rated Squad",
+    "requirements": [{ "kind": "teamRating", "min": 84 }]
+  },
+  {
+    "id": "rated-86",
+    "name": "86-Rated Squad",
+    "requirements": [{ "kind": "teamRating", "min": 86 }]
+  },
+  {
+    "id": "rated-82-rares",
+    "name": "82-Rated, Min 6 Rares",
+    "requirements": [
+      { "kind": "teamRating", "min": 82 },
+      { "kind": "count", "filter": { "rare": true }, "min": 6, "label": "Rare players: Min 6" }
+    ]
+  },
+  {
+    "id": "league-mix",
+    "name": "League Mix (chemistry)",
+    "requirements": [
+      { "kind": "distinct", "attr": "league", "min": 3 },
+      { "kind": "sameAttr", "attr": "club", "max": 3 },
+      { "kind": "teamRating", "min": 78 },
+      { "kind": "chemistry", "min": 18 }
+    ]
+  },
+  {
+    "id": "premier-league",
+    "name": "Premier League Chemistry",
+    "requirements": [
+      { "kind": "count", "filter": { "league": "Premier League" }, "min": 5 },
+      { "kind": "teamRating", "min": 79 },
+      { "kind": "chemistry", "min": 15 }
+    ]
+  },
+  {
+    "id": "silver-squad",
+    "name": "Silver Squad",
+    "requirements": [
+      { "kind": "each", "filter": { "quality": "silver" } },
+      { "kind": "count", "filter": { "rare": true }, "min": 3, "label": "Rare players: Min 3" },
+      { "kind": "chemistry", "min": 10 }
+    ]
+  },
+  {
+    "id": "gold-5",
+    "name": "5-Player Gold Upgrade",
+    "squadSize": 5,
+    "requirements": [{ "kind": "each", "filter": { "quality": "gold" } }]
+  }
+]

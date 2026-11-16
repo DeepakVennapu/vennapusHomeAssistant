@@ -1,0 +1,4618 @@
+{
+ "players": [
+  {
+   "id": 1,
+   "baseId": 1001,
+   "name": "H. Varga",
+   "rating": 51,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "Spain",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150
+  },
+  {
+   "id": 2,
+   "baseId": 1002,
+   "name": "T. Kane-Ellis",
+   "rating": 62,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Spain",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 250
+  },
+  {
+   "id": 3,
+   "baseId": 1003,
+   "name": "M. Ibáñez",
+   "rating": 63,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Croatia",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150
+  },
+  {
+   "id": 4,
+   "baseId": 1004,
+   "name": "L. Petrov",
+   "rating": 57,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Belgium",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 250
+  },
+  {
+   "id": 5,
+   "baseId": 1005,
+   "name": "W. Dupont",
+   "rating": 60,
+   "positions": [
+    "GK"
+   ],
+   "nation": "France",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 6,
+   "baseId": 1006,
+   "name": "H. Rossi",
+   "rating": 61,
+   "positions": [
+    "CB"
+   ],
+   "nation": "England",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 7,
+   "baseId": 1007,
+   "name": "T. Kane-Ellis",
+   "rating": 63,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Italy",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150
+  },
+  {
+   "id": 8,
+   "baseId": 1008,
+   "name": "J. Romero",
+   "rating": 51,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Spain",
+   "league": "MLS",
+   "club": "LA Galaxy",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 9,
+   "baseId": 1009,
+   "name": "K. Brandt",
+   "rating": 53,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Belgium",
+   "league": "Premier League",
+   "club": "Spurs",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 10,
+   "baseId": 1010,
+   "name": "D. Lindqvist",
+   "rating": 60,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Belgium",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 11,
+   "baseId": 1011,
+   "name": "B. Petrov",
+   "rating": 61,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Croatia",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 250
+  },
+  {
+   "id": 12,
+   "baseId": 1012,
+   "name": "V. Brandt",
+   "rating": 54,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Portugal",
+   "league": "Bundesliga",
+   "club": "Dortmund",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 250
+  },
+  {
+   "id": 13,
+   "baseId": 1013,
+   "name": "K. Ibáñez",
+   "rating": 50,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Belgium",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150
+  },
+  {
+   "id": 14,
+   "baseId": 1014,
+   "name": "V. Rossi",
+   "rating": 53,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Morocco",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 250
+  },
+  {
+   "id": 15,
+   "baseId": 1015,
+   "name": "L. Laurent",
+   "rating": 50,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Belgium",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 250
+  },
+  {
+   "id": 16,
+   "baseId": 1016,
+   "name": "G. Dupont",
+   "rating": 58,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Morocco",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150
+  },
+  {
+   "id": 17,
+   "baseId": 1017,
+   "name": "K. Ibáñez",
+   "rating": 54,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Portugal",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 18,
+   "baseId": 1018,
+   "name": "L. Brook",
+   "rating": 60,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Netherlands",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 150
+  },
+  {
+   "id": 19,
+   "baseId": 1019,
+   "name": "P. Varga",
+   "rating": 58,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Argentina",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150
+  },
+  {
+   "id": 20,
+   "baseId": 1020,
+   "name": "M. Moreau",
+   "rating": 58,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Spain",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 250
+  },
+  {
+   "id": 21,
+   "baseId": 1021,
+   "name": "O. Kane-Ellis",
+   "rating": 70,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Belgium",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 22,
+   "baseId": 1022,
+   "name": "P. Kane-Ellis",
+   "rating": 73,
+   "positions": [
+    "CB"
+   ],
+   "nation": "France",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 23,
+   "baseId": 1023,
+   "name": "N. Petrov",
+   "rating": 68,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Belgium",
+   "league": "Premier League",
+   "club": "Man City",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 24,
+   "baseId": 1024,
+   "name": "O. Ibáñez",
+   "rating": 72,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Morocco",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 25,
+   "baseId": 1025,
+   "name": "O. Varga",
+   "rating": 66,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "England",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 26,
+   "baseId": 1026,
+   "name": "N. Lindqvist",
+   "rating": 68,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Netherlands",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 27,
+   "baseId": 1027,
+   "name": "R. Lindqvist",
+   "rating": 66,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Croatia",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 28,
+   "baseId": 1028,
+   "name": "V. Quint",
+   "rating": 73,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Uruguay",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 29,
+   "baseId": 1029,
+   "name": "K. Kane-Ellis",
+   "rating": 69,
+   "positions": [
+    "CB"
+   ],
+   "nation": "France",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 30,
+   "baseId": 1030,
+   "name": "E. Okafor",
+   "rating": 72,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Morocco",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 31,
+   "baseId": 1031,
+   "name": "F. Dupont",
+   "rating": 66,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Brazil",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 32,
+   "baseId": 1032,
+   "name": "A. Nyberg",
+   "rating": 67,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Italy",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 33,
+   "baseId": 1033,
+   "name": "R. Dupont",
+   "rating": 73,
+   "positions": [
+    "ST"
+   ],
+   "nation": "England",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 34,
+   "baseId": 1034,
+   "name": "T. Romero",
+   "rating": 72,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Croatia",
+   "league": "Premier League",
+   "club": "Arsenal",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 35,
+   "baseId": 1035,
+   "name": "W. Osei",
+   "rating": 72,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "Portugal",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 36,
+   "baseId": 1036,
+   "name": "W. Rossi",
+   "rating": 65,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Uruguay",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 37,
+   "baseId": 1037,
+   "name": "N. Brook",
+   "rating": 74,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "France",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 38,
+   "baseId": 1038,
+   "name": "T. Albrecht",
+   "rating": 65,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Argentina",
+   "league": "Ligue 1",
+   "club": "Monaco",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 39,
+   "baseId": 1039,
+   "name": "F. Rossi",
+   "rating": 66,
+   "positions": [
+    "GK"
+   ],
+   "nation": "England",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 40,
+   "baseId": 1040,
+   "name": "H. Ferreira",
+   "rating": 69,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Germany",
+   "league": "Serie A",
+   "club": "Juventus",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 41,
+   "baseId": 1041,
+   "name": "F. Brook",
+   "rating": 70,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "USA",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 42,
+   "baseId": 1042,
+   "name": "T. Kane-Ellis",
+   "rating": 73,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Portugal",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 43,
+   "baseId": 1043,
+   "name": "R. Brook",
+   "rating": 68,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Belgium",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 44,
+   "baseId": 1044,
+   "name": "S. Romero",
+   "rating": 69,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Netherlands",
+   "league": "Liga Portugal",
+   "club": "Benfica",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 45,
+   "baseId": 1045,
+   "name": "R. Mertens",
+   "rating": 65,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Belgium",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 46,
+   "baseId": 1046,
+   "name": "G. Silva",
+   "rating": 70,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Germany",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 47,
+   "baseId": 1047,
+   "name": "F. Nyberg",
+   "rating": 74,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 48,
+   "baseId": 1048,
+   "name": "L. Dupont",
+   "rating": 65,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Brazil",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 49,
+   "baseId": 1049,
+   "name": "T. Kowal",
+   "rating": 69,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 50,
+   "baseId": 1050,
+   "name": "T. Takeda",
+   "rating": 65,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Brazil",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 51,
+   "baseId": 1051,
+   "name": "D. Moreau",
+   "rating": 68,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Portugal",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 52,
+   "baseId": 1052,
+   "name": "P. Nyberg",
+   "rating": 73,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Germany",
+   "league": "Premier League",
+   "club": "Man City",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 53,
+   "baseId": 1053,
+   "name": "K. Brandt",
+   "rating": 70,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Netherlands",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 54,
+   "baseId": 1054,
+   "name": "T. Nyberg",
+   "rating": 68,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Netherlands",
+   "league": "MLS",
+   "club": "LA Galaxy",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 55,
+   "baseId": 1055,
+   "name": "G. Dupont",
+   "rating": 73,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Brazil",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 56,
+   "baseId": 1056,
+   "name": "H. Haddad",
+   "rating": 73,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Morocco",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 57,
+   "baseId": 1057,
+   "name": "L. Costa",
+   "rating": 67,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Netherlands",
+   "league": "Ligue 1",
+   "club": "Monaco",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 58,
+   "baseId": 1058,
+   "name": "J. Kane-Ellis",
+   "rating": 71,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "USA",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 59,
+   "baseId": 1059,
+   "name": "N. Lindqvist",
+   "rating": 70,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Spain",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 60,
+   "baseId": 1060,
+   "name": "V. Rossi",
+   "rating": 67,
+   "positions": [
+    "CB"
+   ],
+   "nation": "USA",
+   "league": "MLS",
+   "club": "LA Galaxy",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 61,
+   "baseId": 1061,
+   "name": "G. Takeda",
+   "rating": 66,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Morocco",
+   "league": "Bundesliga",
+   "club": "Dortmund",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200
+  },
+  {
+   "id": 62,
+   "baseId": 1062,
+   "name": "W. Novak",
+   "rating": 70,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Spain",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 63,
+   "baseId": 1063,
+   "name": "P. Okafor",
+   "rating": 73,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Croatia",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 64,
+   "baseId": 1064,
+   "name": "E. Castillo",
+   "rating": 69,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Italy",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 65,
+   "baseId": 1065,
+   "name": "H. Osei",
+   "rating": 72,
+   "positions": [
+    "CB"
+   ],
+   "nation": "France",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 200
+  },
+  {
+   "id": 66,
+   "baseId": 1066,
+   "name": "L. Petrov",
+   "rating": 76,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 67,
+   "baseId": 1067,
+   "name": "K. Asante",
+   "rating": 77,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "Brazil",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 68,
+   "baseId": 1068,
+   "name": "M. Novak",
+   "rating": 78,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Uruguay",
+   "league": "Serie A",
+   "club": "Juventus",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 540
+  },
+  {
+   "id": 69,
+   "baseId": 1069,
+   "name": "F. Kowal",
+   "rating": 75,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Italy",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 360
+  },
+  {
+   "id": 70,
+   "baseId": 1070,
+   "name": "L. Kowal",
+   "rating": 76,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Uruguay",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 420
+  },
+  {
+   "id": 71,
+   "baseId": 1071,
+   "name": "W. Quint",
+   "rating": 77,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Portugal",
+   "league": "Liga Portugal",
+   "club": "Benfica",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 72,
+   "baseId": 1072,
+   "name": "H. Takeda",
+   "rating": 76,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Argentina",
+   "league": "Ligue 1",
+   "club": "Monaco",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 73,
+   "baseId": 1073,
+   "name": "E. Ferreira",
+   "rating": 78,
+   "positions": [
+    "ST"
+   ],
+   "nation": "USA",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 450
+  },
+  {
+   "id": 74,
+   "baseId": 1074,
+   "name": "F. Osei",
+   "rating": 76,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Belgium",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 75,
+   "baseId": 1075,
+   "name": "S. Ibáñez",
+   "rating": 75,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Argentina",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 300
+  },
+  {
+   "id": 76,
+   "baseId": 1076,
+   "name": "H. Brook",
+   "rating": 75,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Morocco",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 360
+  },
+  {
+   "id": 77,
+   "baseId": 1077,
+   "name": "O. Costa",
+   "rating": 78,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Uruguay",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 78,
+   "baseId": 1078,
+   "name": "W. Kowal",
+   "rating": 77,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Uruguay",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 480
+  },
+  {
+   "id": 79,
+   "baseId": 1079,
+   "name": "N. Moreau",
+   "rating": 75,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "England",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 300
+  },
+  {
+   "id": 80,
+   "baseId": 1080,
+   "name": "C. Romero",
+   "rating": 78,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Argentina",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 81,
+   "baseId": 1081,
+   "name": "R. Petrov",
+   "rating": 79,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "USA",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 600
+  },
+  {
+   "id": 82,
+   "baseId": 1082,
+   "name": "J. Lindqvist",
+   "rating": 78,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Uruguay",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 83,
+   "baseId": 1083,
+   "name": "W. Brook",
+   "rating": 77,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Croatia",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 480
+  },
+  {
+   "id": 84,
+   "baseId": 1084,
+   "name": "O. Costa",
+   "rating": 76,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Netherlands",
+   "league": "Serie A",
+   "club": "Juventus",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 420
+  },
+  {
+   "id": 85,
+   "baseId": 1085,
+   "name": "T. Romero",
+   "rating": 77,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Croatia",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 480
+  },
+  {
+   "id": 86,
+   "baseId": 1086,
+   "name": "C. Brook",
+   "rating": 76,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Argentina",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 87,
+   "baseId": 1087,
+   "name": "H. Quint",
+   "rating": 75,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Morocco",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 360
+  },
+  {
+   "id": 88,
+   "baseId": 1088,
+   "name": "C. Okafor",
+   "rating": 77,
+   "positions": [
+    "ST"
+   ],
+   "nation": "France",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 480
+  },
+  {
+   "id": 89,
+   "baseId": 1089,
+   "name": "R. Ibáñez",
+   "rating": 78,
+   "positions": [
+    "GK"
+   ],
+   "nation": "USA",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 90,
+   "baseId": 1090,
+   "name": "G. Takeda",
+   "rating": 75,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Spain",
+   "league": "MLS",
+   "club": "LA Galaxy",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 360
+  },
+  {
+   "id": 91,
+   "baseId": 1091,
+   "name": "L. Takeda",
+   "rating": 78,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Argentina",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 450
+  },
+  {
+   "id": 92,
+   "baseId": 1092,
+   "name": "T. Ferreira",
+   "rating": 79,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Brazil",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 500
+  },
+  {
+   "id": 93,
+   "baseId": 1093,
+   "name": "E. Kowal",
+   "rating": 77,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Morocco",
+   "league": "Bundesliga",
+   "club": "Leverkusen",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 480
+  },
+  {
+   "id": 94,
+   "baseId": 1094,
+   "name": "A. Novak",
+   "rating": 75,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 300
+  },
+  {
+   "id": 95,
+   "baseId": 1095,
+   "name": "E. Moreau",
+   "rating": 78,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Brazil",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 96,
+   "baseId": 1096,
+   "name": "V. Moreau",
+   "rating": 77,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Uruguay",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 97,
+   "baseId": 1097,
+   "name": "S. Ibáñez",
+   "rating": 77,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "France",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 98,
+   "baseId": 1098,
+   "name": "M. Dupont",
+   "rating": 77,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "Belgium",
+   "league": "MLS",
+   "club": "LA Galaxy",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 400
+  },
+  {
+   "id": 99,
+   "baseId": 1099,
+   "name": "W. Nyberg",
+   "rating": 78,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Brazil",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 450
+  },
+  {
+   "id": 100,
+   "baseId": 1100,
+   "name": "J. Kowal",
+   "rating": 75,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Portugal",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 360
+  },
+  {
+   "id": 101,
+   "baseId": 1101,
+   "name": "S. Varga",
+   "rating": 79,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Belgium",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 500
+  },
+  {
+   "id": 102,
+   "baseId": 1102,
+   "name": "F. Quint",
+   "rating": 77,
+   "positions": [
+    "GK"
+   ],
+   "nation": "France",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 480
+  },
+  {
+   "id": 103,
+   "baseId": 1103,
+   "name": "J. Ibáñez",
+   "rating": 79,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Netherlands",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 104,
+   "baseId": 1104,
+   "name": "V. Moreau",
+   "rating": 75,
+   "positions": [
+    "CB"
+   ],
+   "nation": "England",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 300
+  },
+  {
+   "id": 105,
+   "baseId": 1105,
+   "name": "F. Varga",
+   "rating": 76,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 106,
+   "baseId": 1106,
+   "name": "M. Petrov",
+   "rating": 76,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Argentina",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 420
+  },
+  {
+   "id": 107,
+   "baseId": 1107,
+   "name": "W. Dupont",
+   "rating": 78,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "France",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 108,
+   "baseId": 1108,
+   "name": "N. Quint",
+   "rating": 77,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Uruguay",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 480
+  },
+  {
+   "id": 109,
+   "baseId": 1109,
+   "name": "W. Rossi",
+   "rating": 77,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Argentina",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 110,
+   "baseId": 1110,
+   "name": "N. Costa",
+   "rating": 76,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Argentina",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 350
+  },
+  {
+   "id": 111,
+   "baseId": 1111,
+   "name": "S. Lindqvist",
+   "rating": 76,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Uruguay",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 350
+  },
+  {
+   "id": 112,
+   "baseId": 1112,
+   "name": "K. Costa",
+   "rating": 79,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Spain",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 600
+  },
+  {
+   "id": 113,
+   "baseId": 1113,
+   "name": "G. Mertens",
+   "rating": 75,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Brazil",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 300
+  },
+  {
+   "id": 114,
+   "baseId": 1114,
+   "name": "J. Rossi",
+   "rating": 77,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Morocco",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 115,
+   "baseId": 1115,
+   "name": "T. Ferreira",
+   "rating": 75,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Netherlands",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 300
+  },
+  {
+   "id": 116,
+   "baseId": 1116,
+   "name": "E. Brandt",
+   "rating": 79,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Spain",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 500
+  },
+  {
+   "id": 117,
+   "baseId": 1117,
+   "name": "M. Vidal",
+   "rating": 79,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Spain",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 500
+  },
+  {
+   "id": 118,
+   "baseId": 1118,
+   "name": "R. Moreau",
+   "rating": 78,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Netherlands",
+   "league": "Liga Portugal",
+   "club": "Benfica",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 450
+  },
+  {
+   "id": 119,
+   "baseId": 1119,
+   "name": "D. Petrov",
+   "rating": 78,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Argentina",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 120,
+   "baseId": 1120,
+   "name": "P. Takeda",
+   "rating": 77,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Italy",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 121,
+   "baseId": 1121,
+   "name": "G. Lindqvist",
+   "rating": 79,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Argentina",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 122,
+   "baseId": 1122,
+   "name": "J. Kane-Ellis",
+   "rating": 78,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Brazil",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 450
+  },
+  {
+   "id": 123,
+   "baseId": 1123,
+   "name": "F. Dupont",
+   "rating": 77,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Netherlands",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 400
+  },
+  {
+   "id": 124,
+   "baseId": 1124,
+   "name": "T. Nyberg",
+   "rating": 79,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "USA",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 125,
+   "baseId": 1125,
+   "name": "W. Dupont",
+   "rating": 78,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "England",
+   "league": "Ligue 1",
+   "club": "Monaco",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 540
+  },
+  {
+   "id": 126,
+   "baseId": 1126,
+   "name": "G. Costa",
+   "rating": 82,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Croatia",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 127,
+   "baseId": 1127,
+   "name": "G. Asante",
+   "rating": 80,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Italy",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 600
+  },
+  {
+   "id": 128,
+   "baseId": 1128,
+   "name": "M. Asante",
+   "rating": 83,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Netherlands",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": false,
+   "price": 3600
+  },
+  {
+   "id": 129,
+   "baseId": 1129,
+   "name": "A. Takeda",
+   "rating": 81,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Morocco",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 900
+  },
+  {
+   "id": 130,
+   "baseId": 1130,
+   "name": "O. Varga",
+   "rating": 82,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Brazil",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 131,
+   "baseId": 1131,
+   "name": "A. Osei",
+   "rating": 81,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Argentina",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 900
+  },
+  {
+   "id": 132,
+   "baseId": 1132,
+   "name": "O. Quint",
+   "rating": 81,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Argentina",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 133,
+   "baseId": 1133,
+   "name": "N. Kowal",
+   "rating": 81,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "England",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 750
+  },
+  {
+   "id": 134,
+   "baseId": 1134,
+   "name": "L. Ibáñez",
+   "rating": 80,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "USA",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 720
+  },
+  {
+   "id": 135,
+   "baseId": 1135,
+   "name": "R. Quint",
+   "rating": 83,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "England",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 136,
+   "baseId": 1136,
+   "name": "J. Dupont",
+   "rating": 83,
+   "positions": [
+    "GK"
+   ],
+   "nation": "England",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 1200
+  },
+  {
+   "id": 137,
+   "baseId": 1137,
+   "name": "E. Albrecht",
+   "rating": 82,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 138,
+   "baseId": 1138,
+   "name": "J. Quint",
+   "rating": 82,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Italy",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 139,
+   "baseId": 1139,
+   "name": "T. Novak",
+   "rating": 80,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "Spain",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 140,
+   "baseId": 1140,
+   "name": "K. Quint",
+   "rating": 82,
+   "positions": [
+    "CB"
+   ],
+   "nation": "USA",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 141,
+   "baseId": 1141,
+   "name": "M. Silva",
+   "rating": 83,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "England",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 142,
+   "baseId": 1142,
+   "name": "R. Takeda",
+   "rating": 81,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Brazil",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 750
+  },
+  {
+   "id": 143,
+   "baseId": 1143,
+   "name": "L. Brandt",
+   "rating": 80,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Italy",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 720
+  },
+  {
+   "id": 144,
+   "baseId": 1144,
+   "name": "T. Romero",
+   "rating": 81,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Portugal",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 750
+  },
+  {
+   "id": 145,
+   "baseId": 1145,
+   "name": "A. Costa",
+   "rating": 82,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Portugal",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 146,
+   "baseId": 1146,
+   "name": "R. Quint",
+   "rating": 81,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Italy",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 147,
+   "baseId": 1147,
+   "name": "W. Romero",
+   "rating": 81,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "USA",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 750
+  },
+  {
+   "id": 148,
+   "baseId": 1148,
+   "name": "P. Laurent",
+   "rating": 81,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "France",
+   "league": "Serie A",
+   "club": "Juventus",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 750
+  },
+  {
+   "id": 149,
+   "baseId": 1149,
+   "name": "N. Dupont",
+   "rating": 81,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Italy",
+   "league": "Bundesliga",
+   "club": "Dortmund",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": true,
+   "price": 2700
+  },
+  {
+   "id": 150,
+   "baseId": 1150,
+   "name": "K. Albrecht",
+   "rating": 81,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Italy",
+   "league": "Premier League",
+   "club": "Arsenal",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 900
+  },
+  {
+   "id": 151,
+   "baseId": 1151,
+   "name": "K. Rossi",
+   "rating": 82,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "England",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 152,
+   "baseId": 1152,
+   "name": "M. Quint",
+   "rating": 82,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Germany",
+   "league": "Premier League",
+   "club": "Spurs",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 153,
+   "baseId": 1153,
+   "name": "H. Lindqvist",
+   "rating": 81,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Uruguay",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 154,
+   "baseId": 1154,
+   "name": "O. Dupont",
+   "rating": 81,
+   "positions": [
+    "ST"
+   ],
+   "nation": "France",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 750
+  },
+  {
+   "id": 155,
+   "baseId": 1155,
+   "name": "F. Ferreira",
+   "rating": 81,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Netherlands",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 900
+  },
+  {
+   "id": 156,
+   "baseId": 1156,
+   "name": "F. Ferreira",
+   "rating": 82,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Germany",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 157,
+   "baseId": 1157,
+   "name": "N. Castillo",
+   "rating": 83,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "France",
+   "league": "Bundesliga",
+   "club": "Dortmund",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 158,
+   "baseId": 1158,
+   "name": "H. Kowal",
+   "rating": 83,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Belgium",
+   "league": "Premier League",
+   "club": "Man City",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 159,
+   "baseId": 1159,
+   "name": "T. Kowal",
+   "rating": 80,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "USA",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 720
+  },
+  {
+   "id": 160,
+   "baseId": 1160,
+   "name": "H. Vidal",
+   "rating": 82,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Croatia",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 161,
+   "baseId": 1161,
+   "name": "M. Dupont",
+   "rating": 80,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Germany",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 720
+  },
+  {
+   "id": 162,
+   "baseId": 1162,
+   "name": "T. Brook",
+   "rating": 80,
+   "positions": [
+    "GK"
+   ],
+   "nation": "England",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 163,
+   "baseId": 1163,
+   "name": "W. Novak",
+   "rating": 82,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Portugal",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 164,
+   "baseId": 1164,
+   "name": "E. Vidal",
+   "rating": 80,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Brazil",
+   "league": "Premier League",
+   "club": "Arsenal",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": false,
+   "price": 2160
+  },
+  {
+   "id": 165,
+   "baseId": 1165,
+   "name": "L. Novak",
+   "rating": 83,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Spain",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 166,
+   "baseId": 1166,
+   "name": "A. Vidal",
+   "rating": 82,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Belgium",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 1080
+  },
+  {
+   "id": 167,
+   "baseId": 1167,
+   "name": "A. Ibáñez",
+   "rating": 82,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "England",
+   "league": "Premier League",
+   "club": "Spurs",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 1080
+  },
+  {
+   "id": 168,
+   "baseId": 1168,
+   "name": "K. Nyberg",
+   "rating": 80,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Argentina",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 720
+  },
+  {
+   "id": 169,
+   "baseId": 1169,
+   "name": "L. Haddad",
+   "rating": 80,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Germany",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 720
+  },
+  {
+   "id": 170,
+   "baseId": 1170,
+   "name": "N. Vidal",
+   "rating": 82,
+   "positions": [
+    "GK"
+   ],
+   "nation": "USA",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 171,
+   "baseId": 1171,
+   "name": "D. Albrecht",
+   "rating": 83,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Germany",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 172,
+   "baseId": 1172,
+   "name": "F. Moreau",
+   "rating": 83,
+   "positions": [
+    "GK"
+   ],
+   "nation": "USA",
+   "league": "Ligue 1",
+   "club": "Monaco",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 1200
+  },
+  {
+   "id": 173,
+   "baseId": 1173,
+   "name": "W. Kowal",
+   "rating": 83,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Uruguay",
+   "league": "Liga Portugal",
+   "club": "Benfica",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 1200
+  },
+  {
+   "id": 174,
+   "baseId": 1174,
+   "name": "W. Kane-Ellis",
+   "rating": 82,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "France",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 900
+  },
+  {
+   "id": 175,
+   "baseId": 1175,
+   "name": "W. Albrecht",
+   "rating": 80,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Spain",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 176,
+   "baseId": 1176,
+   "name": "S. Castillo",
+   "rating": 80,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Morocco",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 720
+  },
+  {
+   "id": 177,
+   "baseId": 1177,
+   "name": "D. Ibáñez",
+   "rating": 83,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Germany",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 1200
+  },
+  {
+   "id": 178,
+   "baseId": 1178,
+   "name": "W. Okafor",
+   "rating": 82,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Croatia",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 1080
+  },
+  {
+   "id": 179,
+   "baseId": 1179,
+   "name": "O. Rossi",
+   "rating": 83,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Argentina",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 180,
+   "baseId": 1180,
+   "name": "W. Costa",
+   "rating": 82,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Portugal",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 181,
+   "baseId": 1181,
+   "name": "F. Silva",
+   "rating": 81,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Argentina",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 900
+  },
+  {
+   "id": 182,
+   "baseId": 1182,
+   "name": "D. Lindqvist",
+   "rating": 82,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Germany",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": true,
+   "price": 3240
+  },
+  {
+   "id": 183,
+   "baseId": 1183,
+   "name": "N. Asante",
+   "rating": 83,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Germany",
+   "league": "Premier League",
+   "club": "Man City",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 184,
+   "baseId": 1184,
+   "name": "L. Brandt",
+   "rating": 81,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "England",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 750
+  },
+  {
+   "id": 185,
+   "baseId": 1185,
+   "name": "N. Lindqvist",
+   "rating": 82,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Brazil",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 900
+  },
+  {
+   "id": 186,
+   "baseId": 1186,
+   "name": "T. Osei",
+   "rating": 82,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Argentina",
+   "league": "Serie A",
+   "club": "Milan",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 1080
+  },
+  {
+   "id": 187,
+   "baseId": 1187,
+   "name": "W. Rossi",
+   "rating": 83,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "USA",
+   "league": "Serie A",
+   "club": "Inter",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 188,
+   "baseId": 1188,
+   "name": "C. Brandt",
+   "rating": 83,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Croatia",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 1200
+  },
+  {
+   "id": 189,
+   "baseId": 1189,
+   "name": "B. Brandt",
+   "rating": 80,
+   "positions": [
+    "GK"
+   ],
+   "nation": "France",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 720
+  },
+  {
+   "id": 190,
+   "baseId": 1190,
+   "name": "E. Ibáñez",
+   "rating": 80,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Netherlands",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 600
+  },
+  {
+   "id": 191,
+   "baseId": 1191,
+   "name": "E. Albrecht",
+   "rating": 84,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Netherlands",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 2200
+  },
+  {
+   "id": 192,
+   "baseId": 1192,
+   "name": "V. Silva",
+   "rating": 84,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Uruguay",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 2200
+  },
+  {
+   "id": 193,
+   "baseId": 1193,
+   "name": "N. Okafor",
+   "rating": 84,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Netherlands",
+   "league": "Premier League",
+   "club": "Arsenal",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 2200
+  },
+  {
+   "id": 194,
+   "baseId": 1194,
+   "name": "M. Dupont",
+   "rating": 85,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Belgium",
+   "league": "Premier League",
+   "club": "Arsenal",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 195,
+   "baseId": 1195,
+   "name": "W. Mertens",
+   "rating": 85,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Belgium",
+   "league": "Premier League",
+   "club": "Spurs",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": false,
+   "price": 13500
+  },
+  {
+   "id": 196,
+   "baseId": 1196,
+   "name": "C. Romero",
+   "rating": 85,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Croatia",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 4500
+  },
+  {
+   "id": 197,
+   "baseId": 1197,
+   "name": "H. Petrov",
+   "rating": 85,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Belgium",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 198,
+   "baseId": 1198,
+   "name": "O. Moreau",
+   "rating": 86,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Italy",
+   "league": "Premier League",
+   "club": "Spurs",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 199,
+   "baseId": 1199,
+   "name": "K. Mertens",
+   "rating": 86,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Argentina",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": false,
+   "price": 27000
+  },
+  {
+   "id": 200,
+   "baseId": 1200,
+   "name": "C. Albrecht",
+   "rating": 86,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Croatia",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 9000
+  },
+  {
+   "id": 201,
+   "baseId": 1201,
+   "name": "P. Okafor",
+   "rating": 85,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "England",
+   "league": "Premier League",
+   "club": "Arsenal",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 202,
+   "baseId": 1202,
+   "name": "B. Takeda",
+   "rating": 86,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Italy",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 9000
+  },
+  {
+   "id": 203,
+   "baseId": 1203,
+   "name": "O. Brook",
+   "rating": 85,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Uruguay",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 204,
+   "baseId": 1204,
+   "name": "C. Takeda",
+   "rating": 85,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Morocco",
+   "league": "Eredivisie",
+   "club": "Feyenoord",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 4500
+  },
+  {
+   "id": 205,
+   "baseId": 1205,
+   "name": "D. Dupont",
+   "rating": 85,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Germany",
+   "league": "Ligue 1",
+   "club": "Monaco",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 4500
+  },
+  {
+   "id": 206,
+   "baseId": 1206,
+   "name": "K. Varga",
+   "rating": 86,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Argentina",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 9000
+  },
+  {
+   "id": 207,
+   "baseId": 1207,
+   "name": "W. Kowal",
+   "rating": 85,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Spain",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 208,
+   "baseId": 1208,
+   "name": "F. Takeda",
+   "rating": 84,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "USA",
+   "league": "Ligue 1",
+   "club": "PSG",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 2200
+  },
+  {
+   "id": 209,
+   "baseId": 1209,
+   "name": "R. Kowal",
+   "rating": 86,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Argentina",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 210,
+   "baseId": 1210,
+   "name": "F. Brook",
+   "rating": 85,
+   "positions": [
+    "CB"
+   ],
+   "nation": "England",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 211,
+   "baseId": 1211,
+   "name": "D. Quint",
+   "rating": 86,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "France",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 212,
+   "baseId": 1212,
+   "name": "L. Petrov",
+   "rating": 86,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Argentina",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 213,
+   "baseId": 1213,
+   "name": "D. Romero",
+   "rating": 85,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Netherlands",
+   "league": "MLS",
+   "club": "LA Galaxy",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 214,
+   "baseId": 1214,
+   "name": "B. Brook",
+   "rating": 84,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Brazil",
+   "league": "LALIGA EA SPORTS",
+   "club": "Real Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 2200
+  },
+  {
+   "id": 215,
+   "baseId": 1215,
+   "name": "K. Lindqvist",
+   "rating": 85,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "France",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 216,
+   "baseId": 1216,
+   "name": "R. Takeda",
+   "rating": 85,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Uruguay",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 4500
+  },
+  {
+   "id": 217,
+   "baseId": 1217,
+   "name": "W. Osei",
+   "rating": 84,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Uruguay",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 2200
+  },
+  {
+   "id": 218,
+   "baseId": 1218,
+   "name": "H. Quint",
+   "rating": 85,
+   "positions": [
+    "CB"
+   ],
+   "nation": "USA",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 219,
+   "baseId": 1219,
+   "name": "K. Quint",
+   "rating": 86,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Belgium",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 9000
+  },
+  {
+   "id": 220,
+   "baseId": 1220,
+   "name": "B. Brandt",
+   "rating": 86,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Germany",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 221,
+   "baseId": 1221,
+   "name": "W. Silva",
+   "rating": 85,
+   "positions": [
+    "CB"
+   ],
+   "nation": "England",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 4500
+  },
+  {
+   "id": 222,
+   "baseId": 1222,
+   "name": "W. Silva",
+   "rating": 86,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Portugal",
+   "league": "Ligue 1",
+   "club": "Marseille",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 223,
+   "baseId": 1223,
+   "name": "H. Okafor",
+   "rating": 86,
+   "positions": [
+    "ST"
+   ],
+   "nation": "Brazil",
+   "league": "Bundesliga",
+   "club": "Bayern",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 224,
+   "baseId": 1224,
+   "name": "O. Albrecht",
+   "rating": 86,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "England",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 9000
+  },
+  {
+   "id": 225,
+   "baseId": 1225,
+   "name": "N. Varga",
+   "rating": 85,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Netherlands",
+   "league": "Serie A",
+   "club": "Napoli",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 4500
+  },
+  {
+   "id": 226,
+   "baseId": 1226,
+   "name": "B. Okafor",
+   "rating": 89,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "England",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 40000
+  },
+  {
+   "id": 227,
+   "baseId": 1227,
+   "name": "C. Costa",
+   "rating": 89,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Argentina",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": true,
+   "special": true,
+   "rarity": "inform",
+   "untradeable": true,
+   "price": 120000
+  },
+  {
+   "id": 228,
+   "baseId": 1228,
+   "name": "J. Quint",
+   "rating": 87,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Germany",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 16000
+  },
+  {
+   "id": 229,
+   "baseId": 1229,
+   "name": "K. Moreau",
+   "rating": 90,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Argentina",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": false,
+   "price": 60000
+  },
+  {
+   "id": 230,
+   "baseId": 1230,
+   "name": "P. Costa",
+   "rating": 90,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Morocco",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 60000
+  },
+  {
+   "id": 231,
+   "baseId": 1231,
+   "name": "N. Okafor",
+   "rating": 90,
+   "positions": [
+    "RW",
+    "RM"
+   ],
+   "nation": "Belgium",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 60000
+  },
+  {
+   "id": 232,
+   "baseId": 1232,
+   "name": "W. Brook",
+   "rating": 88,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Netherlands",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": false,
+   "price": 26000
+  },
+  {
+   "id": 233,
+   "baseId": 1233,
+   "name": "R. Mertens",
+   "rating": 87,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Croatia",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 16000
+  },
+  {
+   "id": 234,
+   "baseId": 1234,
+   "name": "W. Petrov",
+   "rating": 89,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Uruguay",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 40000
+  },
+  {
+   "id": 235,
+   "baseId": 1235,
+   "name": "C. Laurent",
+   "rating": 87,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Germany",
+   "league": "Eredivisie",
+   "club": "Ajax",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 16000
+  },
+  {
+   "id": 236,
+   "baseId": 1215,
+   "name": "K. Lindqvist",
+   "rating": 85,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "France",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 4500,
+   "duplicate": true
+  },
+  {
+   "id": 237,
+   "baseId": 1025,
+   "name": "O. Varga",
+   "rating": 66,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "England",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 238,
+   "baseId": 1134,
+   "name": "L. Ibáñez",
+   "rating": 80,
+   "positions": [
+    "CDM",
+    "CM"
+   ],
+   "nation": "USA",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 720,
+   "duplicate": true
+  },
+  {
+   "id": 239,
+   "baseId": 1046,
+   "name": "G. Silva",
+   "rating": 70,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Germany",
+   "league": "Premier League",
+   "club": "Chelsea",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 240,
+   "baseId": 1191,
+   "name": "E. Albrecht",
+   "rating": 84,
+   "positions": [
+    "GK"
+   ],
+   "nation": "Netherlands",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 2200,
+   "duplicate": true
+  },
+  {
+   "id": 241,
+   "baseId": 1050,
+   "name": "T. Takeda",
+   "rating": 65,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Brazil",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 242,
+   "baseId": 1177,
+   "name": "D. Ibáñez",
+   "rating": 83,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Germany",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 1200,
+   "duplicate": true
+  },
+  {
+   "id": 243,
+   "baseId": 1058,
+   "name": "J. Kane-Ellis",
+   "rating": 71,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "USA",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 244,
+   "baseId": 1226,
+   "name": "B. Okafor",
+   "rating": 89,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "England",
+   "league": "Ligue 1",
+   "club": "Lyon",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 40000,
+   "duplicate": true
+  },
+  {
+   "id": 245,
+   "baseId": 1177,
+   "name": "D. Ibáñez",
+   "rating": 83,
+   "positions": [
+    "CM",
+    "CDM"
+   ],
+   "nation": "Germany",
+   "league": "LALIGA EA SPORTS",
+   "club": "Sevilla",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 1200,
+   "duplicate": true
+  },
+  {
+   "id": 246,
+   "baseId": 1003,
+   "name": "M. Ibáñez",
+   "rating": 63,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Croatia",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 150,
+   "duplicate": true
+  },
+  {
+   "id": 247,
+   "baseId": 1071,
+   "name": "W. Quint",
+   "rating": 77,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Portugal",
+   "league": "Liga Portugal",
+   "club": "Benfica",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 400,
+   "duplicate": true
+  },
+  {
+   "id": 248,
+   "baseId": 1036,
+   "name": "W. Rossi",
+   "rating": 65,
+   "positions": [
+    "LB",
+    "LWB"
+   ],
+   "nation": "Uruguay",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 249,
+   "baseId": 1197,
+   "name": "H. Petrov",
+   "rating": 85,
+   "positions": [
+    "LM",
+    "LW"
+   ],
+   "nation": "Belgium",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 4500,
+   "duplicate": true
+  },
+  {
+   "id": 250,
+   "baseId": 1055,
+   "name": "G. Dupont",
+   "rating": 73,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Brazil",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 251,
+   "baseId": 1215,
+   "name": "K. Lindqvist",
+   "rating": 85,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "France",
+   "league": "LALIGA EA SPORTS",
+   "club": "FC Barcelona",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 4500,
+   "duplicate": true
+  },
+  {
+   "id": 252,
+   "baseId": 1132,
+   "name": "O. Quint",
+   "rating": 81,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Argentina",
+   "league": "MLS",
+   "club": "Inter Miami",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 900,
+   "duplicate": true
+  },
+  {
+   "id": 253,
+   "baseId": 1028,
+   "name": "V. Quint",
+   "rating": 73,
+   "positions": [
+    "CM",
+    "CAM"
+   ],
+   "nation": "Uruguay",
+   "league": "Liga Portugal",
+   "club": "Sporting CP",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350,
+   "duplicate": true
+  },
+  {
+   "id": 254,
+   "baseId": 1178,
+   "name": "W. Okafor",
+   "rating": 82,
+   "positions": [
+    "RB",
+    "RWB"
+   ],
+   "nation": "Croatia",
+   "league": "Eredivisie",
+   "club": "PSV",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 1080,
+   "duplicate": true
+  },
+  {
+   "id": 255,
+   "baseId": 1103,
+   "name": "J. Ibáñez",
+   "rating": 79,
+   "positions": [
+    "LW",
+    "LM"
+   ],
+   "nation": "Netherlands",
+   "league": "Bundesliga",
+   "club": "Leipzig",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 600,
+   "duplicate": true
+  },
+  {
+   "id": 256,
+   "baseId": 1049,
+   "name": "T. Kowal",
+   "rating": 69,
+   "positions": [
+    "ST",
+    "CF"
+   ],
+   "nation": "Italy",
+   "league": "LALIGA EA SPORTS",
+   "club": "Atlético Madrid",
+   "rare": true,
+   "special": false,
+   "rarity": "rare",
+   "untradeable": true,
+   "price": 350,
+   "duplicate": true
+  },
+  {
+   "id": 257,
+   "baseId": 1123,
+   "name": "F. Dupont",
+   "rating": 77,
+   "positions": [
+    "CB"
+   ],
+   "nation": "Netherlands",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 400,
+   "duplicate": true
+  },
+  {
+   "id": 258,
+   "baseId": 1050,
+   "name": "T. Takeda",
+   "rating": 65,
+   "positions": [
+    "CAM",
+    "CM"
+   ],
+   "nation": "Brazil",
+   "league": "Premier League",
+   "club": "Liverpool",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  },
+  {
+   "id": 259,
+   "baseId": 1126,
+   "name": "G. Costa",
+   "rating": 82,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Croatia",
+   "league": "MLS",
+   "club": "LAFC",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 900,
+   "duplicate": true
+  },
+  {
+   "id": 260,
+   "baseId": 1055,
+   "name": "G. Dupont",
+   "rating": 73,
+   "positions": [
+    "RM",
+    "RW"
+   ],
+   "nation": "Brazil",
+   "league": "Liga Portugal",
+   "club": "Porto",
+   "rare": false,
+   "special": false,
+   "rarity": "common",
+   "untradeable": true,
+   "price": 200,
+   "duplicate": true
+  }
+ ]
+}

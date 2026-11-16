@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FUT Assistant</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --text: #16181d; --muted: #5e6672; --border: #dde1e7;
+    --accent: #1f6feb; --ok: #1a7f37; --bad: #c62828; --chip: #eef1f5; --buy: #9a6700;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1115; --panel: #171a21; --text: #e6e8ec; --muted: #9aa3af; --border: #2a2f39;
+      --accent: #4c8dff; --ok: #3fb950; --bad: #f85149; --chip: #222733; --buy: #d29922; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, Segoe UI, sans-serif; }
+  header { padding: 16px; border-bottom: 1px solid var(--border); background: var(--panel); }
+  header h1 { margin: 0; font-size: 18px; }
+  header p { margin: 4px 0 0; color: var(--muted); }
+  main { display: grid; grid-template-columns: 320px 1fr; gap: 16px; padding: 16px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  section { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 10px; }
+  label { display: block; margin: 10px 0 4px; font-weight: 600; }
+  select, input[type=number], textarea { width: 100%; padding: 7px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
+  textarea { font: 12px/1.4 ui-monospace, Menlo, monospace; min-height: 140px; }
+  .check { display: flex; gap: 8px; align-items: center; font-weight: 400; }
+  .row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  button { padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--chip); color: var(--text); font: inherit; cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: wait; }
+  .muted { color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+  .chip { background: var(--chip); border-radius: 999px; padding: 3px 10px; }
+  .big { font-size: 22px; font-weight: 700; margin: 2px 0 6px; }
+  .ok { color: var(--ok); } .bad { color: var(--bad); } .buy { color: var(--buy); font-weight: 600; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  ul.reqs { list-style: none; padding: 0; margin: 8px 0; }
+  ul.reqs li { padding: 2px 0; }
+  details { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>FUT Assistant <span class="muted">· proof of concept</span></h1>
+  <p>Runs entirely on this machine. It never logs in to EA or touches your account.</p>
+</header>
+<main>
+  <section>
+    <h2>Setup</h2>
+    <label for="clubFile">Club</label>
+    <select id="clubSource">
+      <option value="sample">Sample club (made-up cards)</option>
+      <option value="file">Load a club JSON file…</option>
+    </select>
+    <input type="file" id="clubFile" accept=".json,application/json" hidden>
+    <div id="clubInfo" class="muted"></div>
+
+    <label for="sbcSelect">SBC</label>
+    <select id="sbcSelect"></select>
+    <details>
+      <summary>Edit requirements (JSON)</summary>
+      <textarea id="sbcJson" spellcheck="false"></textarea>
+    </details>
+
+    <label for="protect">Protect cards rated at least</label>
+    <input type="number" id="protect" value="87" min="50" max="99">
+    <label class="check"><input type="checkbox" id="allowSpecial"> Allow special/promo cards</label>
+    <label class="check"><input type="checkbox" id="useMarket" checked> Suggest cards to buy when short</label>
+
+    <div class="row">
+      <button class="primary" id="solveBtn">Solve once</button>
+      <button id="repeatBtn">How many times can I do it?</button>
+    </div>
+    <p class="note">Market prices are placeholders in <code>data/market-prices.json</code>. Card prices in the sample club are estimates.</p>
+  </section>
+
+  <section id="output">
+    <h2>Result</h2>
+    <p class="muted">Pick an SBC and press <b>Solve once</b> or <b>How many times can I do it?</b></p>
+  </section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

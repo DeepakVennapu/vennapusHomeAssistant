@@ -1,0 +1,16 @@
+{
+  "name": "fut-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local SBC solver and fodder analysis for EA FC Ultimate Team (proof of concept).",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node server.js",
+    "sample": "node scripts/make-sample-club.js",
+    "cli": "node src/cli.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

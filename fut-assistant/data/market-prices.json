@@ -1,0 +1,7 @@
+{
+  "note": "Cheapest price for 'any' player of each rating. Placeholder values: replace with current prices from FUTBIN/FUT.GG.",
+  "prices": {
+    "80": 600, "81": 750, "82": 900, "83": 1200, "84": 2200,
+    "85": 4500, "86": 9000, "87": 16000, "88": 26000
+  }
+}
