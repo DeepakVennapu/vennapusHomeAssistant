@@ -8,6 +8,8 @@
 //   { kind: 'sameAttr', attr, min?, max? }     e.g. Same league count: Min 4 / Same club: Max 3
 //   { kind: 'distinct', attr, min?, max? }     e.g. Leagues: Min 3 / Nations: Max 4
 //   { kind: 'each',     filter }               e.g. every player is silver
+//   { kind: 'playerChem', min }                e.g. every player at least 1 chemistry
+//   { kind: 'unsupported', label }             read from EA but not understood: shown, not checked
 //
 // A filter is { attr: value | [values], minRating?, maxRating?, rare?, quality? }.
 
@@ -28,6 +30,8 @@ const filterText = (f = {}) => Object.entries(f)
   .map(([k, v]) => (k === 'rare' ? (v ? 'Rare' : 'Non-rare') : `${k} ${Array.isArray(v) ? v.join('/') : v}`))
   .join(', ');
 
+const attrName = (a) => String(a).replace(/Id$/, '');
+
 const bounds = (r) => [r.min != null ? `Min ${r.min}` : null, r.max != null ? `Max ${r.max}` : null]
   .filter(Boolean).join(', ');
 
@@ -37,9 +41,11 @@ export function describe(r) {
     case 'teamRating': return `Team rating: Min ${r.min}`;
     case 'chemistry': return `Squad chemistry: Min ${r.min}`;
     case 'count': return `${filterText(r.filter)} players: ${bounds(r)}`;
-    case 'sameAttr': return `Players from the same ${r.attr}: ${bounds(r)}`;
-    case 'distinct': return `Different ${r.attr}s: ${bounds(r)}`;
+    case 'sameAttr': return `Players from the same ${attrName(r.attr)}: ${bounds(r)}`;
+    case 'distinct': return `Different ${attrName(r.attr)}s: ${bounds(r)}`;
     case 'each': return `Every player: ${filterText(r.filter)}`;
+    case 'playerChem': return `Chemistry per player: Min ${r.min}`;
+    case 'unsupported': return 'Requirement not understood';
     default: return r.kind;
   }
 }
@@ -57,7 +63,7 @@ export function evaluate(squad, sbc, withDetails = false) {
   const size = sbc.squadSize ?? 11;
   const ratings = squad.map((p) => p.rating);
   const reqs = sbc.requirements ?? [];
-  const needsChem = withDetails || reqs.some((r) => r.kind === 'chemistry');
+  const needsChem = withDetails || reqs.some((r) => r.kind === 'chemistry' || r.kind === 'playerChem');
   const chem = needsChem ? bestChemistry(squad, sbc.formations) : null;
   const rating = teamRating(ratings, size);
 
@@ -94,10 +100,19 @@ export function evaluate(squad, sbc, withDetails = false) {
         deficit = squad.filter((p) => !matches(p, r.filter)).length;
         actual = squad.length - deficit;
         break;
+      case 'playerChem': {
+        const low = chem.perPlayer.filter((c) => c.chem < r.min).length;
+        actual = squad.length - low;
+        deficit = low;
+        break;
+      }
+      case 'unsupported':
+        // Can't check it; the page shows it so you check it yourself.
+        return { label: describe(r), kind: r.kind, ok: true, unchecked: true, actual: '–', deficit: 0 };
       default:
         throw new Error(`Unknown requirement kind "${r.kind}"`);
     }
-    return { label: describe(r), kind: r.kind, ok: deficit === 0, actual, deficit };
+    return { label: describe(r), kind: r.kind, ok: deficit === 0, uncertain: Boolean(r.uncertain), actual, deficit };
   });
 
   const sizeDeficit = Math.abs(size - squad.length);

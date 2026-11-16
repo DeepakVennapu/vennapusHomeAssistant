@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FUT Assistant – Club Export",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Exports your EA FC Ultimate Team club for FUT Assistant and pre-fills one SBC squad you chose. Never submits, buys, sells or lists anything.",
   "content_scripts": [
     {
@@ -9,7 +9,7 @@
         "https://www.ea.com/*/ultimate-team/web-app/*",
         "https://www.ea.com/ultimate-team/web-app/*"
       ],
-      "js": ["club-export.js", "prefill.js"],
+      "js": ["club-export.js", "prefill.js", "sbc-reader.js"],
       "world": "MAIN",
       "run_at": "document_idle"
     }

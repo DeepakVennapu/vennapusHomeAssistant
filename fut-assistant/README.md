@@ -49,6 +49,18 @@ The Web App's internals are undocumented and change between seasons. If names sh
 work with ids instead of names, but sample SBCs that filter by league name (e.g. "Premier League")
 need the real name or must be edited.
 
+## Read an SBC's requirements (Chrome extension)
+
+With an SBC open in the Web App, press **Copy SBC requirements** in the panel. Then press
+**Paste SBC from Web App** in FUT Assistant. This reads only what's already on screen and makes no
+network calls.
+
+- League, nation and club rules come through as EA ids. The page shows names from your imported club.
+- Requirements read with a guessed meaning (player quality, "Rare") are marked **⚠ double-check**.
+- Requirements it doesn't understand (for example "first owner") are listed as **⚠ not checked**
+  rather than dropped. Check those yourself.
+- The requirement text EA shows is copied too, so you can compare it with what was read.
+
 ## Pre-fill an SBC (Chrome extension)
 
 1. In FUT Assistant, solve the SBC and press **Copy pre-fill code**. Each attempt in

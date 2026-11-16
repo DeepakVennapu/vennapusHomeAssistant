@@ -39,6 +39,11 @@ export function normalizePlayer(raw) {
     nation: raw.nation ?? null,
     league: raw.league ?? null,
     club: raw.club ?? null,
+    // EA ids, used by requirements read from the Web App.
+    nationId: raw.nationId != null ? Number(raw.nationId) : null,
+    leagueId: raw.leagueId != null ? Number(raw.leagueId) : null,
+    clubId: raw.clubId != null ? Number(raw.clubId) : null,
+    rareflag: raw.rareflag != null ? Number(raw.rareflag) : (special ? 3 : rare ? 1 : 0),
     rare,
     special,
     rarity: raw.rarity ?? (special ? 'special' : rare ? 'rare' : 'common'),

@@ -86,3 +86,19 @@ test('repeat: with market prices, shows what the next attempt costs', () => {
   assert.equal(res.times, 1);
   assert.equal(res.nextWithMarket.buys.length, 7);
 });
+
+test('requirements: per-player chemistry and unsupported entries', () => {
+  const squad = F442.map((pos) => card({ positions: [pos] }));
+  squad[10] = card({ positions: ['ST'], nation: 'Peru', league: 'L9', club: 'C9' });
+  const ev = evaluate(squad, { requirements: [{ kind: 'playerChem', min: 1 }, { kind: 'unsupported', label: 'Mystery' }] });
+  assert.equal(ev.results[0].ok, false);
+  assert.equal(ev.results[0].actual, 10);
+  assert.equal(ev.results[1].unchecked, true);
+  assert.equal(ev.results[1].ok, true);
+});
+
+test('requirements: EA ids work as filters', () => {
+  const squad = [card({ leagueId: 13 }), card({ leagueId: 13 }), card({ leagueId: 53 })];
+  const ev = evaluate(squad, { squadSize: 3, requirements: [{ kind: 'count', filter: { leagueId: [13] }, min: 2 }] });
+  assert.equal(ev.ok, true);
+});

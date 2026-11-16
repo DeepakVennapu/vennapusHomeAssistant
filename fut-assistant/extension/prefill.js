@@ -77,9 +77,11 @@
   function slotPositions(squad) {
     const { tryCall, firstDefined, position } = H();
     const slots = tryCall(() => squad.getFieldPlayers?.()) ?? tryCall(() => squad.getPlayers?.()) ?? [];
-    return slots.map((s) => position(firstDefined(
-      s?.position?.typeName, tryCall(() => s?.getPosition?.()?.typeName), s?.position?.typeId, s?.position)));
+    // Locked "brick" spots in smaller SBCs can't take a card.
+    return slots.map((s) => (tryCall(() => s?.isBrick?.()) ? BRICK : position(firstDefined(
+      s?.position?.typeName, tryCall(() => s?.getPosition?.()?.typeName), s?.position?.typeId, s?.position))));
   }
+  const BRICK = '#BRICK';
 
   function itemPositions(item) {
     const { firstDefined, position } = H();
@@ -103,7 +105,7 @@
     items.forEach((_, i) => tryAssign(i, new Array(slots.length).fill(false)));
     const placed = new Set(owner.filter((i) => i !== -1));
     const rest = items.map((_, i) => i).filter((i) => !placed.has(i));
-    for (let s = 0; s < slots.length && rest.length; s++) if (owner[s] === -1) owner[s] = rest.shift();
+    for (let s = 0; s < slots.length && rest.length; s++) if (owner[s] === -1 && slots[s] !== BRICK) owner[s] = rest.shift();
     return owner.map((i) => (i === -1 ? null : items[i]));
   }
 
@@ -139,8 +141,9 @@
 
     const { itemCache, observe } = H();
     const slots = slotPositions(challenge.squad);
-    if (slots.length && wanted.length > slots.length) {
-      throw new Error(`The code has ${wanted.length} cards but this SBC has ${slots.length} spots. Is the right SBC open?`);
+    const openSpots = slots.filter((s) => s !== BRICK).length;
+    if (slots.length && wanted.length > openSpots) {
+      throw new Error(`The code has ${wanted.length} cards but this SBC has ${openSpots} spots. Is the right SBC open?`);
     }
     const placement = placeCards(wanted.map((id) => itemCache.get(id)), slots.length ? slots : wanted.map(() => null));
 

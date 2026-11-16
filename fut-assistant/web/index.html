@@ -45,6 +45,9 @@
   details { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
   summary { cursor: pointer; font-weight: 600; }
   .note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+  .warn { color: var(--buy); }
+  .callout { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; margin-top: 8px; font-size: 12px; }
+  .callout ul { margin: 4px 0 0; padding-left: 18px; }
 </style>
 </head>
 <body>
@@ -66,6 +69,8 @@
 
     <label for="sbcSelect">SBC</label>
     <select id="sbcSelect"></select>
+    <div class="row" style="margin-top:6px"><button id="pasteSbc">Paste SBC from Web App</button></div>
+    <div id="sbcInfo"></div>
     <details>
       <summary>Edit requirements (JSON)</summary>
       <textarea id="sbcJson" spellcheck="false"></textarea>

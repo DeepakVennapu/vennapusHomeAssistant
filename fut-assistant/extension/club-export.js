@@ -236,6 +236,9 @@
         <button id="export">Export club (read-only)</button>
         <div class="status" id="exportStatus">Reads your club and SBC storage, then saves a file.</div>
         <hr>
+        <button id="readSbc" class="secondary">Copy SBC requirements</button>
+        <div class="status" id="readStatus">With an SBC open, copies its rules for FUT Assistant.</div>
+        <hr>
         <textarea id="code" placeholder="Paste a pre-fill code from FUT Assistant" spellcheck="false"></textarea>
         <button id="prefill" class="secondary">Pre-fill open SBC</button>
         <div class="status" id="prefillStatus">Open the SBC's squad screen first. You check and submit yourself.</div>
@@ -244,6 +247,24 @@
     const status = root.getElementById('exportStatus');
     root.querySelector('.x').addEventListener('click', () => host.remove());
     const setStatus = (t) => { status.textContent = t; };
+
+    const readStatus = root.getElementById('readStatus');
+    root.getElementById('readSbc').addEventListener('click', async () => {
+      try {
+        const reader = window.__futAssistantSbc;
+        if (!reader) throw new Error('SBC reader script did not load.');
+        const data = reader.readOpenSbc();
+        const text = JSON.stringify(data);
+        try { await navigator.clipboard.writeText(text); } catch { window.prompt('Copy these SBC requirements:', text); }
+        const n = data.sbc.requirements.filter((r) => r.kind !== 'unsupported').length;
+        const warn = [data.unsupported && `${data.unsupported} not understood`, data.uncertain && `${data.uncertain} to double-check`]
+          .filter(Boolean).join(', ');
+        readStatus.textContent = `Copied ${n} requirement(s) for "${data.sbc.name}"${warn ? ` (${warn})` : ''}. ` +
+          'Paste it in FUT Assistant.';
+      } catch (e) {
+        readStatus.textContent = `Stopped: ${e.message}`;
+      }
+    });
 
     const prefillBtn = root.getElementById('prefill');
     const prefillStatus = root.getElementById('prefillStatus');

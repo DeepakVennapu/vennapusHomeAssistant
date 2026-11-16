@@ -14,6 +14,7 @@ try { ({ chromium } = createRequire(import.meta.url)('playwright')); } catch { /
 
 const script = fileURLToPath(new URL('../extension/club-export.js', import.meta.url));
 const prefillScript = fileURLToPath(new URL('../extension/prefill.js', import.meta.url));
+const readerScript = fileURLToPath(new URL('../extension/sbc-reader.js', import.meta.url));
 
 // Builds a fake Web App: 120 club players over two pages, 3 storage cards, one loan, one Icon.
 function mockWebApp() {
@@ -160,6 +161,74 @@ test('pre-fill refuses a bad code and a missing card', { skip: !chromium && 'pla
     const missing = await page.evaluate((c) => window.__futAssistantPrefill.run(c).catch((e) => e.message), code);
     assert.match(missing, /no longer in your club or storage: Sold Guy/);
     assert.equal(await page.evaluate(() => window.__saved), 0);
+  } finally {
+    await browser.close();
+  }
+});
+
+// Fake SBC requirements, shaped the way the Web App stores them (enum tables + kvPairs).
+function mockRequirements() {
+  window.SBCEligibilityKey = { PLAYER_COUNT: 1, TEAM_RATING_1_TO_100: 2, CHEMISTRY_POINTS: 3, SAME_LEAGUE_COUNT: 4,
+    NATION_COUNT: 5, LEAGUE_ID: 6, PLAYER_RARITY_GROUP: 7, FIRST_OWNER_PLAYERS_COUNT: 8, PLAYER_QUALITY: 9 };
+  window.SBCEligibilityScope = { GREATER: 0, LOWER: 1, EXACT: 2 };
+  const kv = (o) => ({ _collection: o });
+  const challenge = window.getAppMain().getRootViewController().getPresentedViewController()
+    .getCurrentViewController().getCurrentController()._view.deep.holder.challenge;
+  challenge.name = 'Test Hybrid';
+  challenge.eligibilityRequirements = [
+    { scope: 2, count: -1, kvPairs: kv({ 1: [11] }) },
+    { scope: 0, count: -1, kvPairs: kv({ 2: [80] }) },
+    { scope: 0, count: -1, kvPairs: kv({ 3: [10] }) },
+    { scope: 1, count: -1, kvPairs: kv({ 4: [8] }) },
+    { scope: 0, count: -1, kvPairs: kv({ 5: [2] }) },
+    { scope: 0, count: 3, kvPairs: kv({ 6: [13] }) },
+    { scope: 0, count: 2, kvPairs: kv({ 7: [4] }) },
+    { scope: 2, count: 1, kvPairs: kv({ 8: [1] }) },
+    { scope: 0, count: -1, kvPairs: new Map([[9, [2]]]) },
+  ];
+  document.body.insertAdjacentHTML('beforeend', '<ul class="sbc-requirements"><li>Team Rating: Min. 80</li><li>First Owner: Exactly 1</li></ul>');
+}
+
+test('reads the open SBC requirements and the solver can use them', { skip: !chromium && 'playwright not installed', timeout: 60000 }, async () => {
+  const browser = await chromium.launch({ args: ['--enable-features=Clipboard'] });
+  try {
+    const ctx = await browser.newContext();
+    const page = await ctx.newPage();
+    await page.setContent('<!doctype html><html><body></body></html>');
+    await page.evaluate(mockWebApp);
+    await page.evaluate(mockOpenSbc);
+    await page.evaluate(mockRequirements);
+    for (const f of [script, prefillScript, readerScript]) await page.addScriptTag({ content: readFileSync(f, 'utf8') });
+
+    const data = await page.evaluate(() => window.__futAssistantSbc.readOpenSbc());
+    const { sbc } = data;
+    assert.equal(sbc.name, 'Test Hybrid');
+    assert.equal(sbc.squadSize, 11);
+    assert.equal(data.unsupported, 1);
+    assert.equal(data.uncertain, 2);
+    assert.deepEqual(data.eaText, ['Team Rating: Min. 80', 'First Owner: Exactly 1']);
+    const kinds = sbc.requirements.map((r) => [r.kind, r.attr ?? r.filter ?? null, r.min ?? null, r.max ?? null]);
+    assert.deepEqual(kinds, [
+      ['teamRating', null, 80, null],
+      ['chemistry', null, 10, null],
+      ['sameAttr', 'leagueId', null, 8],
+      ['distinct', 'nationId', 2, null],
+      ['count', { leagueId: [13] }, 3, null],
+      ['count', { rare: true }, 2, null],
+      ['each', { quality: ['silver', 'gold'] }, null, null],
+      ['unsupported', null, null, null],
+    ]);
+
+    // The panel button reports what it copied.
+    await page.locator('#fut-assistant-export #readSbc').click();
+    await page.locator('#fut-assistant-export #readStatus').filter({ hasText: /Copied|Stopped/ }).waitFor();
+    assert.match(await page.locator('#fut-assistant-export #readStatus').textContent(),
+      /Copied 7 requirement\(s\) for "Test Hybrid" \(1 not understood, 2 to double-check\)/);
+
+    const exported = await page.evaluate(() => window.__futAssistantExport.buildExport(window.__club, window.__storage, []));
+    const res = solve(normalizeClub(exported), sbc);
+    assert.equal(res.feasible, true, JSON.stringify(res.evaluation.results));
+    assert.ok(res.evaluation.results.find((r) => r.kind === 'unsupported').unchecked);
   } finally {
     await browser.close();
   }

@@ -40,6 +40,49 @@ function addSavedOption(name) {
   opt.textContent = `My club (${name})`;
 }
 
+// EA requirements use ids; label them with names from the imported club where possible.
+function nameFor(attr, id) {
+  const nameAttr = { nationId: 'nation', leagueId: 'league', clubId: 'club' }[attr];
+  const hit = nameAttr && club.find((p) => p[attr] === id && p[nameAttr]);
+  return hit ? hit[nameAttr] : `${(nameAttr ?? attr)} ${id}`;
+}
+
+const RARITY_NAMES = { 0: 'Common', 1: 'Rare', 3: 'Team of the Week' };
+
+function labelFor(r) {
+  const b = [r.min != null ? `Min ${r.min}` : null, r.max != null ? `Max ${r.max}` : null].filter(Boolean).join(', ');
+  const f = r.filter ?? {};
+  const idKey = ['nationId', 'leagueId', 'clubId'].find((k) => f[k]);
+  if (r.kind === 'count' && idKey) return `${f[idKey].map((id) => nameFor(idKey, id)).join(' / ')} players: ${b}`;
+  if (r.kind === 'count' && f.rareflag) return `${f.rareflag.map((x) => RARITY_NAMES[x] ?? `Rarity ${x}`).join(' / ')} players: ${b}`;
+  if (r.kind === 'count' && f.rare) return `Rare players: ${b}`;
+  if (r.kind === 'each' && f.quality) return `Player quality: ${[].concat(f.quality).join(' or ')}`;
+  return r.label;
+}
+
+function importSbc(text) {
+  let data;
+  try { data = JSON.parse(text); } catch { throw new Error('That is not SBC data copied from the extension.'); }
+  if (data?.kind !== 'fut-assistant-sbc' || !data.sbc) throw new Error('That is not SBC data copied from the extension.');
+  const sbc = data.sbc;
+  for (const r of sbc.requirements) { const l = labelFor(r); if (l) r.label = l; }
+  sbcs.unshift(sbc);
+  $('sbcSelect').innerHTML = sbcs.map((s, i) => `<option value="${i}">${i === 0 ? 'From Web App: ' : ''}${esc(s.name)}</option>`).join('');
+  $('sbcSelect').value = '0';
+  $('sbcJson').value = JSON.stringify(sbc, null, 2);
+
+  const issues = [];
+  if (!data.enumsFound) issues.push("Couldn't read EA's requirement names, so most requirements may be missing.");
+  if (data.unsupported) issues.push(`${data.unsupported} requirement(s) weren't understood. They're listed and not checked.`);
+  if (data.uncertain) issues.push(`${data.uncertain} requirement(s) were read with a guessed meaning (marked ⚠).`);
+  const ea = (data.eaText ?? []).map((t) => `<li>${esc(t)}</li>`).join('');
+  $('sbcInfo').innerHTML = `<div class="callout">
+      <b>${esc(sbc.name)}</b> · ${sbc.requirements.length} requirement(s)${sbc.squadSize ? ` · ${sbc.squadSize} players` : ''}
+      ${issues.map((i) => `<div class="warn">⚠ ${esc(i)}</div>`).join('')}
+      ${ea ? `<div class="muted" style="margin-top:4px">EA shows:</div><ul>${ea}</ul>` : ''}
+    </div>`;
+}
+
 function currentSbc() {
   return JSON.parse($('sbcJson').value);
 }
@@ -68,8 +111,11 @@ function squadTable(res) {
 
 function summary(res) {
   const ev = res.evaluation;
-  const reqs = ev.results.map((r) =>
-    `<li class="${r.ok ? 'ok' : 'bad'}">${r.ok ? '✓' : '✗'} ${esc(r.label)} <span class="muted">(got ${r.actual})</span></li>`).join('');
+  const reqs = ev.results.map((r) => {
+    if (r.unchecked) return `<li class="warn">⚠ ${esc(r.label)} <span class="muted">(not checked; check it yourself)</span></li>`;
+    const flag = r.uncertain ? ' <span class="warn" title="Read from EA with a guessed meaning">⚠ double-check</span>' : '';
+    return `<li class="${r.ok ? 'ok' : 'bad'}">${r.ok ? '✓' : '✗'} ${esc(r.label)} <span class="muted">(got ${r.actual})</span>${flag}</li>`;
+  }).join('');
   return `<div class="chips">
       <span class="chip">Rating ${ev.rating}</span>
       <span class="chip">Chemistry ${ev.chemistry?.total ?? '–'} (${esc(ev.chemistry?.formation ?? '–')})</span>
@@ -190,6 +236,13 @@ async function init() {
     } catch {
       window.prompt('Copy this pre-fill code:', text);
     }
+  });
+  $('pasteSbc').addEventListener('click', async () => {
+    let text = null;
+    try { text = await navigator.clipboard.readText(); } catch { /* permission denied or unsupported */ }
+    if (!text || !text.includes('fut-assistant-sbc')) text = window.prompt('Paste the SBC requirements copied from the extension:');
+    if (!text) return;
+    try { importSbc(text); } catch (e) { alert(e.message); }
   });
   $('solveBtn').addEventListener('click', () => run('solve'));
   $('repeatBtn').addEventListener('click', () => run('repeat'));
