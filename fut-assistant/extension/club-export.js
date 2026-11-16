@@ -25,6 +25,10 @@
     RAM: 'CAM', LAM: 'CAM', RF: 'CF', LF: 'CF', RS: 'ST', LS: 'ST' };
   const ICON_LEAGUE_ID = 2118;
 
+  // Every card the extension has read this session, by card id, so pre-fill can reuse them.
+  const itemCache = new Map();
+  const remember = (items) => { for (const i of items) if (i?.id != null) itemCache.set(String(i.id), i); };
+
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const pause = () => sleep(PAUSE_MS[0] + Math.random() * (PAUSE_MS[1] - PAUSE_MS[0]));
   const tryCall = (fn) => { try { return fn(); } catch { return undefined; } };
@@ -67,14 +71,16 @@
     return c;
   }
 
-  async function readClubPlayers(onProgress) {
+  // `until` lets pre-fill stop reading as soon as it has found the cards it needs.
+  async function readClubPlayers(onProgress, until) {
     const all = [];
     for (let page = 0; page < MAX_PAGES; page++) {
       const res = await observe(window.services.Club.search(searchCriteria(page * PAGE_SIZE)), 'Club search');
       const items = res?.response?.items ?? res?.data?.items ?? [];
       all.push(...items);
+      remember(items);
       onProgress(`Reading club… ${all.length} cards`);
-      const done = items.length < PAGE_SIZE || res?.response?.retrievedAll === true;
+      const done = items.length < PAGE_SIZE || res?.response?.retrievedAll === true || Boolean(until?.());
       if (done) break;
       await pause();
     }
@@ -85,7 +91,9 @@
     const svc = window.services?.Item;
     if (!svc?.requestStorageItems) return { items: [], note: 'SBC storage not available in this Web App version' };
     const res = await observe(svc.requestStorageItems(), 'SBC storage');
-    return { items: res?.response?.items ?? res?.data?.items ?? [] };
+    const items = res?.response?.items ?? res?.data?.items ?? [];
+    remember(items);
+    return { items };
   }
 
   // ---- Mapping EA items to FUT Assistant cards ----
@@ -217,17 +225,45 @@
         button:disabled { opacity: .6; cursor: wait; }
         .status { margin-top: 6px; color: #9aa3af; font-size: 12px; }
         .x { float: right; cursor: pointer; color: #9aa3af; }
+        hr { border: 0; border-top: 1px solid #2a2f39; margin: 10px 0; }
+        textarea { width: 100%; box-sizing: border-box; height: 54px; margin-bottom: 6px; background: #0f1115; color: #e6e8ec;
+          border: 1px solid #2a2f39; border-radius: 6px; font: 11px ui-monospace, monospace; resize: vertical; }
+        .secondary { background: #2b3240; }
       </style>
       <div class="box">
         <span class="x" title="Hide">✕</span>
         <div class="title">FUT Assistant</div>
-        <button>Export club (read-only)</button>
-        <div class="status">Reads your club and SBC storage, then saves a file.</div>
+        <button id="export">Export club (read-only)</button>
+        <div class="status" id="exportStatus">Reads your club and SBC storage, then saves a file.</div>
+        <hr>
+        <textarea id="code" placeholder="Paste a pre-fill code from FUT Assistant" spellcheck="false"></textarea>
+        <button id="prefill" class="secondary">Pre-fill open SBC</button>
+        <div class="status" id="prefillStatus">Open the SBC's squad screen first. You check and submit yourself.</div>
       </div>`;
-    const btn = root.querySelector('button');
-    const status = root.querySelector('.status');
+    const btn = root.getElementById('export');
+    const status = root.getElementById('exportStatus');
     root.querySelector('.x').addEventListener('click', () => host.remove());
     const setStatus = (t) => { status.textContent = t; };
+
+    const prefillBtn = root.getElementById('prefill');
+    const prefillStatus = root.getElementById('prefillStatus');
+    prefillBtn.addEventListener('click', async () => {
+      if (busy) return;
+      const prefill = window.__futAssistantPrefill;
+      if (!prefill) { prefillStatus.textContent = 'Pre-fill script did not load.'; return; }
+      if (!webAppReady()) { prefillStatus.textContent = 'Log in and wait for the Web App to finish loading.'; return; }
+      busy = true;
+      prefillBtn.disabled = true;
+      try {
+        const msg = await prefill.run(root.getElementById('code').value, (t) => { prefillStatus.textContent = t; });
+        prefillStatus.textContent = msg;
+      } catch (e) {
+        prefillStatus.textContent = `Stopped: ${e.message}`;
+      } finally {
+        busy = false;
+        prefillBtn.disabled = false;
+      }
+    });
 
     btn.addEventListener('click', async () => {
       if (busy) return;
@@ -253,7 +289,10 @@
   }
 
   // Exposed for testing and for a manual run from the console.
-  window.__futAssistantExport = { buildExport, toCard, position, readClubPlayers, readStorage, mountPanel, VERSION };
+  window.__futAssistantExport = {
+    buildExport, toCard, position, readClubPlayers, readStorage, mountPanel, observe, tryCall, firstDefined,
+    pause, itemCache, VERSION,
+  };
 
   if (document.body) mountPanel();
   else window.addEventListener('DOMContentLoaded', mountPanel);

@@ -49,6 +49,29 @@ The Web App's internals are undocumented and change between seasons. If names sh
 work with ids instead of names, but sample SBCs that filter by league name (e.g. "Premier League")
 need the real name or must be edited.
 
+## Pre-fill an SBC (Chrome extension)
+
+1. In FUT Assistant, solve the SBC and press **Copy pre-fill code**. Each attempt in
+   "How many times can I do it?" has its own code.
+2. In the Web App, open that SBC so its squad is on screen.
+3. Paste the code into the extension panel and press **Pre-fill open SBC**.
+4. Check the squad, then submit it yourself.
+
+What pre-fill does:
+- It looks up only the cards it hasn't already read this session (storage first, then club pages,
+  stopping as soon as it has them all).
+- It places them in their own positions where possible.
+- It saves the squad draft once, the same as EA's page does when you place cards by hand.
+
+What pre-fill never does:
+- It never submits, buys, sells or lists anything.
+- It fills only one squad per click and waits 30 seconds between fills.
+- It doesn't buy "buy" cards. It leaves those spots empty and names the cards for you.
+
+If the screen doesn't update after a fill, go back and reopen the SBC. If it says no open SBC was
+found, or that it found more than one, the Web App's internals have probably changed and the
+`findOpenChallenge` lookup in `extension/prefill.js` needs adjusting.
+
 ## Club file format
 
 A JSON array of cards, or `{ "players": [...] }`:
@@ -82,5 +105,6 @@ See `data/sbcs.json`. Requirement kinds: `teamRating`, `chemistry`, `count` (wit
 - Icon/Hero chemistry boosts are approximated.
 - Market prices in `data/market-prices.json` are placeholders, and "buy" cards have no league, nation or club.
 - Repeat counts are a greedy estimate.
-- The club export is tested against a mock of the Web App, not EA's real one yet.
-- No pre-fill into the Web App yet; you build the squad yourself.
+- The club export and pre-fill are tested against a mock of the Web App, not EA's real one yet.
+- Using any extension inside the Web App is against EA's terms. Pre-fill writes a squad draft; that
+  is lower risk than auto-submitting, but not zero.

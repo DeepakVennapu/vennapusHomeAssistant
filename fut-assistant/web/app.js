@@ -77,26 +77,52 @@ function summary(res) {
     </div><ul class="reqs">${reqs}</ul>`;
 }
 
+// Pre-fill codes shown on screen, keyed by button index.
+let codes = [];
+
+function prefillCode(res, sbc) {
+  return JSON.stringify({
+    kind: 'fut-assistant-prefill',
+    v: 1,
+    sbc: sbc.name,
+    createdAt: new Date().toISOString(),
+    cards: res.squad.map((p) => (p.virtual
+      ? { buy: true, name: p.name, rating: p.rating }
+      : { id: p.id, name: p.name, rating: p.rating, slot: p.slot })),
+  });
+}
+
+function copyButton(res, sbc) {
+  if (!res.feasible) return '';
+  codes.push(prefillCode(res, sbc));
+  return `<div class="row"><button class="primary copy" data-code="${codes.length - 1}">Copy pre-fill code</button>
+    <span class="muted copied"></span></div>`;
+}
+
 function renderSolve(res, sbc) {
+  codes = [];
   const buys = res.squad.filter((p) => p.virtual);
   $('output').innerHTML = `<h2>${esc(sbc.name)}</h2>
     <div class="big ${res.feasible ? 'ok' : 'bad'}">${esc(res.message)}</div>
     ${buys.length ? `<p class="buy">Needs ${buys.length} card(s) from the market, about ${coins(buys.reduce((a, p) => a + p.price, 0))} coins.</p>` : ''}
     ${summary(res)}${res.squad.length ? squadTable(res) : ''}
-    <p class="note">Build this squad yourself in the game or Web App, check it, then submit.</p>`;
+    ${copyButton(res, sbc)}
+    <p class="note">Paste the code into the extension panel in EA's Web App with this SBC open, or build the squad by hand.
+      Either way, check it and submit it yourself.</p>`;
 }
 
 function renderRepeat(res, sbc) {
+  codes = [];
   const attempts = res.attempts.map((a, i) => `<details ${i === 0 ? 'open' : ''}>
       <summary>Attempt ${i + 1} · rating ${a.evaluation.rating} · card value ${coins(a.cost)}</summary>
-      ${summary(a)}${squadTable(a)}</details>`).join('');
+      ${summary(a)}${squadTable(a)}${copyButton(a, sbc)}</details>`).join('');
   const next = res.nextWithMarket;
   $('output').innerHTML = `<h2>${esc(sbc.name)}</h2>
     <div class="big ${res.times ? 'ok' : 'bad'}">${res.times}${res.capped ? '+' : ''} time(s) with cards you own</div>
     <p class="muted">Card value across all attempts: ${coins(res.totalCost)}.
       ${res.capped ? 'Stopped counting at the limit.' : ''} This is a greedy estimate; a different split could occasionally get one more.</p>
     ${res.blockers.length ? `<p><b>What stops the next one:</b></p><ul class="reqs">${res.blockers.map((b) => `<li class="bad">✗ ${esc(b)}</li>`).join('')}</ul>` : ''}
-    ${next ? `<details open><summary class="buy">One more by buying ${next.buys.length} card(s) for about ${coins(next.buyCost)} coins</summary>${summary(next)}${squadTable(next)}</details>` : ''}
+    ${next ? `<details open><summary class="buy">One more by buying ${next.buys.length} card(s) for about ${coins(next.buyCost)} coins</summary>${summary(next)}${squadTable(next)}${copyButton(next, sbc)}</details>` : ''}
     ${attempts}`;
 }
 
@@ -152,6 +178,18 @@ async function init() {
       addSavedOption(f.name);
       $('clubSource').value = 'saved';
     } catch (e) { alert(`Could not read club file: ${e.message}`); }
+  });
+  $('output').addEventListener('click', async (e) => {
+    const btn = e.target.closest('button.copy');
+    if (!btn) return;
+    const text = codes[Number(btn.dataset.code)];
+    const note = btn.parentElement.querySelector('.copied');
+    try {
+      await navigator.clipboard.writeText(text);
+      note.textContent = 'Copied. Paste it into the extension panel.';
+    } catch {
+      window.prompt('Copy this pre-fill code:', text);
+    }
   });
   $('solveBtn').addEventListener('click', () => run('solve'));
   $('repeatBtn').addEventListener('click', () => run('repeat'));
