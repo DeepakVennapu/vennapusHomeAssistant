@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "FUT Assistant – Club Export",
+  "version": "0.1.0",
+  "description": "Read-only: exports your EA FC Ultimate Team club to a local JSON file for FUT Assistant. Never buys, sells, lists or submits anything.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.ea.com/*/ultimate-team/web-app/*",
+        "https://www.ea.com/ultimate-team/web-app/*"
+      ],
+      "js": ["club-export.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    }
+  ]
+}

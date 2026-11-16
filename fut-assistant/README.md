@@ -23,6 +23,32 @@ node src/cli.js repeat rated-84 --market
 node src/cli.js solve rated-84 --club my-club.json --protect 86
 ```
 
+## Import your club (Chrome extension)
+
+`extension/` is a read-only Chrome extension. It adds a small **FUT Assistant** panel to EA's
+Web App with one button, **Export club (read-only)**. That button reads your club players and SBC
+storage through the Web App's own read calls and saves `fut-club-YYYY-MM-DD.json` to your computer.
+
+- It never buys, sells, lists, moves, quick-sells or submits anything.
+- It sends nothing anywhere except that file.
+- It reads one page of about 91 cards every 1.5–3 seconds, roughly the pace of scrolling your club by hand.
+- Loan players and cards locked in Evolutions are skipped.
+
+**Install:** open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick
+the `fut-assistant/extension` folder.
+
+**Use:**
+1. Open the Web App, log in, and wait for it to finish loading.
+2. Click **Export club**.
+3. In FUT Assistant (`npm start`), choose **Load a club JSON file…** and pick the saved file.
+   The page remembers it for next time.
+
+The Web App's internals are undocumented and change between seasons. If names show as
+`League 13` or positions look wrong, the mapping needs updating. Send the file's `meta` section
+(especially `meta.sampleKeys`) and it can be fixed. Chemistry and "same league/club" checks still
+work with ids instead of names, but sample SBCs that filter by league name (e.g. "Premier League")
+need the real name or must be edited.
+
 ## Club file format
 
 A JSON array of cards, or `{ "players": [...] }`:
@@ -56,4 +82,5 @@ See `data/sbcs.json`. Requirement kinds: `teamRating`, `chemistry`, `count` (wit
 - Icon/Hero chemistry boosts are approximated.
 - Market prices in `data/market-prices.json` are placeholders, and "buy" cards have no league, nation or club.
 - Repeat counts are a greedy estimate.
-- There's no club import from the Web App yet; that is the next step.
+- The club export is tested against a mock of the Web App, not EA's real one yet.
+- No pre-fill into the Web App yet; you build the squad yourself.

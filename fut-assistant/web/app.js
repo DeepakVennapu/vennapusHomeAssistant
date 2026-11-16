@@ -23,6 +23,23 @@ function setClub(data, label) {
   $('clubInfo').textContent = `${label}: ${club.length} cards (${storage} in storage, ${untradeable} untradeable)`;
 }
 
+function readSaved() {
+  try {
+    const text = localStorage.getItem('futAssistant.club');
+    return text ? { text, name: localStorage.getItem('futAssistant.clubName') ?? 'Imported club' } : null;
+  } catch { return null; }
+}
+
+function addSavedOption(name) {
+  let opt = $('clubSource').querySelector('option[value="saved"]');
+  if (!opt) {
+    opt = document.createElement('option');
+    opt.value = 'saved';
+    $('clubSource').insertBefore(opt, $('clubSource').firstChild);
+  }
+  opt.textContent = `My club (${name})`;
+}
+
 function currentSbc() {
   return JSON.parse($('sbcJson').value);
 }
@@ -109,14 +126,32 @@ async function init() {
   $('sbcSelect').addEventListener('change', showSbc);
   showSbc();
 
+  // Reuse the last imported club, if this browser has one saved.
+  const saved = readSaved();
+  if (saved) {
+    try {
+      setClub(JSON.parse(saved.text), saved.name);
+      addSavedOption(saved.name);
+      $('clubSource').value = 'saved';
+    } catch { /* ignore a corrupt saved copy */ }
+  }
+
   $('clubSource').addEventListener('change', async () => {
-    if ($('clubSource').value === 'file') $('clubFile').click();
+    const v = $('clubSource').value;
+    if (v === 'file') $('clubFile').click();
+    else if (v === 'saved') { const s = readSaved(); if (s) setClub(JSON.parse(s.text), s.name); }
     else setClub(await loadJson('../data/sample-club.json'), 'Sample club');
   });
   $('clubFile').addEventListener('change', async () => {
     const f = $('clubFile').files[0];
     if (!f) return;
-    try { setClub(JSON.parse(await f.text()), f.name); } catch (e) { alert(`Could not read club file: ${e.message}`); }
+    try {
+      const text = await f.text();
+      setClub(JSON.parse(text), f.name);
+      try { localStorage.setItem('futAssistant.club', text); localStorage.setItem('futAssistant.clubName', f.name); } catch { /* storage unavailable */ }
+      addSavedOption(f.name);
+      $('clubSource').value = 'saved';
+    } catch (e) { alert(`Could not read club file: ${e.message}`); }
   });
   $('solveBtn').addEventListener('click', () => run('solve'));
   $('repeatBtn').addEventListener('click', () => run('repeat'));
